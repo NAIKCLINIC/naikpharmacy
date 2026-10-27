@@ -1,899 +1,390 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Naik Pharmacy, LDA Gol Market, Lucknow: derma, gynaecology and pregnancy care. Order online and get it delivered to your door.">
-<meta name="theme-color" content="#0070B8">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<title>Naik Pharmacy</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
-<style>
-/* Layout: Ampul template structure (split hero, marquees, sticky scroll story, dark footer wordmark) re-skinned in Naik Pharmacy's blue + green brand. Single light theme, set explicitly. */
-:root{
-  color-scheme:light;
-  --blue:#0070B8; --blue-d:#005590; --navy:#062a47; --navy-2:#0b3a5f;
-  --green:#88C040; --green-d:#5f9a22; --green-soft:#eef7e3;
-  --ink:#0c1a28; --muted:#5a6b7c; --line:#e1e8ef;
-  --bg:#ffffff; --soft:#f1f5f9; --blue-soft:#e6f1fa;
-  --white:#ffffff; --star:#f4a521;
-  --head:"Poppins","Segoe UI",system-ui,sans-serif;
-  --body:"DM Sans","Segoe UI",system-ui,sans-serif;
-  --r:20px; --ease:cubic-bezier(.22,1,.36,1);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.55;overflow-x:hidden}
-h1,h2,h3,h4{font-family:var(--head);margin:0;line-height:1.12;text-wrap:balance;letter-spacing:-.01em}
-p{margin:0}
-a{color:inherit}
-button{font:inherit;color:inherit}
-img,svg{max-width:100%}
-.wrap{max-width:1360px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-section{padding-block:56px}
-:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:8px}
-
-/* ---------- Buttons ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.95rem 1.6rem;border-radius:12px;font-family:var(--head);font-weight:600;font-size:1rem;text-decoration:none;border:1.5px solid transparent;cursor:pointer;position:relative;overflow:hidden;transition:transform .3s var(--ease),background .3s,color .3s,border-color .3s;white-space:nowrap}
-.btn span{display:block;transition:transform .45s var(--ease)}
-.btn span::after{content:attr(data-t);position:absolute;left:0;right:0;top:100%;text-align:center}
-.btn .roll>span{position:relative}
-.btn .roll{position:relative;display:block;overflow:hidden;height:1.5em;line-height:1.5em}
-.btn:hover .roll span{transform:translateY(-100%)}
-.btn-blue{background:var(--blue);color:var(--white)}
-.btn-blue:hover{background:var(--blue-d)}
-.btn-green{background:var(--green);color:var(--navy)}
-.btn-green:hover{background:#9ad152}
-.btn-line{background:var(--white);color:var(--ink);border-color:#c7d2dc}
-.btn-line:hover{border-color:var(--ink)}
-.btn-dark{background:var(--navy);color:var(--white)}
-.btn-sm{padding:.6rem 1.1rem;font-size:.92rem;border-radius:10px}
-
-/* ---------- Nav ---------- */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:box-shadow .3s}
-.nav.scrolled{box-shadow:0 6px 24px rgba(6,42,71,.08)}
-.nav .wrap{display:flex;align-items:center;gap:24px;padding-block:14px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
-.brand svg{width:54px;height:auto}
-.brand b{font-family:var(--head);font-weight:700;font-size:1.15rem;letter-spacing:.04em;color:var(--blue);line-height:1}
-.brand b em{font-style:normal;color:var(--green-d)}
-.links{display:flex;gap:30px;list-style:none;margin:0 0 0 auto;padding:0;font-family:var(--head);font-weight:500;font-size:1rem}
-.links a{text-decoration:none;color:var(--ink);position:relative;padding-block:4px}
-.links a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--blue);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
-.links a:hover::after,.links a.active::after{transform:scaleX(1);transform-origin:left}
-.links a.active{color:var(--blue)}
-.nav-icons{display:flex;gap:10px;align-items:center}
-.icon-btn{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--ink);background:var(--white);display:grid;place-items:center;cursor:pointer;position:relative;transition:background .3s,color .3s}
-.icon-btn:hover{background:var(--ink);color:var(--white)}
-.icon-btn svg{width:20px;height:20px}
-.badge-count{position:absolute;top:-4px;right:-4px;min-width:22px;height:22px;border-radius:11px;background:var(--green);color:var(--navy);font:700 .75rem/22px var(--head);text-align:center;padding:0 5px;transform:scale(0);transition:transform .35s var(--ease)}
-.badge-count.on{transform:scale(1)}
-.badge-count.bump{animation:bump .5s var(--ease)}
-@keyframes bump{40%{transform:scale(1.4)}}
-.menu-btn{display:none}
-@media (max-width:980px){
-  .links{position:fixed;inset:72px 0 auto 0;background:var(--white);flex-direction:column;gap:0;padding:8px max(16px,env(safe-area-inset-left,0px)) 20px;box-shadow:0 20px 30px rgba(6,42,71,.1);transform:translateY(-12px);opacity:0;pointer-events:none;transition:.35s var(--ease);font-size:1.2rem}
-  .links.open{transform:none;opacity:1;pointer-events:auto}
-  .links li a{display:block;padding:14px 0;border-bottom:1px solid var(--line)}
-  .menu-btn{display:grid}
-  .nav-icons{margin-left:auto}
-}
-@media (max-width:520px){.brand b{display:none}}
-
-/* search bar */
-.searchbar{overflow:hidden;max-height:0;transition:max-height .45s var(--ease);background:var(--white)}
-.searchbar.open{max-height:110px}
-.searchbar .wrap{padding-block:6px 18px}
-.searchbar input{width:100%;font:500 1.1rem var(--body);padding:1rem 1.2rem;border-radius:14px;border:1.5px solid var(--line);background:var(--soft);color:var(--ink)}
-
-/* ---------- Hero ---------- */
-.hero{padding-block:12px 40px}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.hero-left{background:var(--soft);border-radius:var(--r);padding:clamp(28px,4vw,60px);display:flex;flex-direction:column;justify-content:space-between;gap:36px;overflow:hidden;min-width:0}
-.hero h1{font-size:clamp(2.6rem,5.2vw,4.9rem);font-weight:700;line-height:1.04}
-.hero h1 .g{color:var(--green-d)}
-.hero h1 .b{color:var(--blue)}
-.hero-sub{font-size:clamp(1.15rem,1.6vw,1.45rem);color:#3b4b5c;max-width:30rem;margin-top:20px}
-.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
-.load-in{animation:loadIn 1s var(--ease) both}
-@keyframes loadIn{from{opacity:0;transform:translateY(40px);filter:blur(10px)}to{opacity:1;transform:none;filter:none}}
-.d1{animation-delay:.08s}.d2{animation-delay:.2s}.d3{animation-delay:.32s}.d4{animation-delay:.44s}.d5{animation-delay:.56s}
-.hero-right{display:grid;grid-template-rows:1fr auto;gap:16px;min-width:0}
-.hero-visual{border-radius:var(--r);overflow:hidden;position:relative;min-height:420px;background:radial-gradient(120% 90% at 85% 15%,#2a93d6 0%,var(--blue) 40%,var(--navy) 100%)}
-.hero-visual .mark-bg{position:absolute;right:-60px;bottom:-70px;width:440px;opacity:.13}
-.hero-visual .chip{position:absolute;left:24px;top:24px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:var(--white);padding:.5rem 1rem;border-radius:999px;font:600 .95rem var(--head);backdrop-filter:blur(6px);display:flex;gap:8px;align-items:center}
-.hero-visual .chip i{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(136,192,64,.7);animation:ping 2s infinite}
-@keyframes ping{70%{box-shadow:0 0 0 10px rgba(136,192,64,0)}100%{box-shadow:0 0 0 0 rgba(136,192,64,0)}}
-.float-pack{position:absolute;filter:drop-shadow(0 24px 30px rgba(0,0,0,.28));animation:bob 6s ease-in-out infinite}
-.float-pack svg{width:100%;height:auto;display:block}
-.fp1{width:36%;left:8%;bottom:6%;animation-delay:-1s}
-.fp2{width:30%;left:38%;top:14%;animation-delay:-3s}
-.fp3{width:32%;right:4%;bottom:10%;animation-delay:-4.5s}
-@keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-16px) rotate(2deg)}}
-.hero-tag{position:absolute;right:20px;top:20px;background:var(--white);border-radius:14px;padding:10px 14px;font:600 .9rem var(--head);color:var(--ink);box-shadow:0 10px 30px rgba(0,0,0,.18)}
-.hero-tag small{display:block;font:500 .8rem var(--body);color:var(--muted)}
-.stats{background:var(--white);border:1px solid var(--line);border-radius:var(--r);display:grid;grid-template-columns:repeat(3,1fr);padding:22px 10px}
-.stat{text-align:center;padding:4px 8px}
-.stat b{font-family:var(--head);font-weight:500;font-size:clamp(2.2rem,3.6vw,3.3rem);line-height:1;font-variant-numeric:tabular-nums;color:var(--ink)}
-.stat b sup{font-size:.4em;font-weight:500;vertical-align:.2em;margin-left:3px;color:var(--blue)}
-.stat span{display:block;color:var(--muted);font-size:.98rem;margin-top:6px}
-.badges{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
-.badges-track{display:flex;gap:44px;width:max-content;animation:marq 26s linear infinite}
-.badge-item{display:flex;align-items:center;gap:10px;font:700 1.15rem var(--head);color:#8696a7;letter-spacing:.02em;white-space:nowrap}
-.badge-item svg{width:30px;height:30px}
-@keyframes marq{to{transform:translateX(-50%)}}
-@keyframes marqR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
-@media (max-width:980px){.hero-grid{grid-template-columns:1fr}.hero-visual{min-height:360px}}
-@media (max-width:520px){.stat span{font-size:.85rem}.hero-visual{min-height:300px}}
-
-/* ---------- Reveal on scroll ---------- */
-.pre{opacity:0;transform:translateY(50px);filter:blur(8px)}
-.rv{transition:opacity 1s var(--ease),transform 1s var(--ease),filter 1s var(--ease)}
-
-/* ---------- Categories marquee ---------- */
-.cats-title{font:600 1.15rem var(--head);margin-bottom:22px}
-.pill-marquee{overflow:hidden}
-.pill-track{display:flex;gap:14px;width:max-content;animation:marq 40s linear infinite}
-.pill-marquee:hover .pill-track{animation-play-state:paused}
-.cat-pill{display:flex;align-items:center;gap:12px;padding:1.05rem 1.6rem;border:1.5px solid #c7d2dc;border-radius:999px;font:500 1.15rem var(--head);background:var(--white);cursor:pointer;white-space:nowrap;transition:background .3s,color .3s,border-color .3s}
-.cat-pill svg{width:18px;height:18px;transition:transform .4s var(--ease)}
-.cat-pill:hover{background:var(--blue);color:var(--white);border-color:var(--blue)}
-.cat-pill:hover svg{transform:rotate(45deg)}
-.cat-img{width:190px;height:66px;border-radius:999px;overflow:hidden;flex:none;position:relative}
-.cat-img svg{position:absolute;width:86px;height:86px;top:-6px}
-.cat-img svg:first-child{left:22px}.cat-img svg:last-child{right:18px;top:2px}
-
-/* ---------- Section heads ---------- */
-.sec-head{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:34px}
-.sec-head h2{font-size:clamp(2.3rem,4.4vw,3.8rem);font-weight:600}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font:600 .9rem var(--head);letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
-.eyebrow::before{content:"";width:22px;height:3px;border-radius:2px;background:var(--green)}
-
-/* ---------- Product cards ---------- */
-.pgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
-.pcard{display:flex;flex-direction:column;gap:6px;cursor:pointer}
-.pimg{position:relative;background:var(--soft);border-radius:var(--r);aspect-ratio:1/1.02;max-width:100%;overflow:hidden;display:grid;place-items:center}
-.pimg svg{width:78%;height:auto;transition:transform .7s var(--ease)}
-.pcard:hover .pimg svg{transform:scale(1.08) rotate(-2deg)}
-.pimg .off{position:absolute;left:14px;top:14px;background:var(--green);color:var(--navy);font:700 .85rem var(--head);padding:.35rem .8rem;border-radius:999px}
-.pimg .rx{position:absolute;right:14px;top:14px;background:var(--navy);color:var(--white);font:700 .78rem var(--head);padding:.35rem .7rem;border-radius:999px}
-.pimg .quick{position:absolute;left:14px;right:14px;bottom:14px;display:flex;gap:8px;transform:translateY(calc(100% + 24px));transition:transform .5s var(--ease)}
-.pcard:hover .pimg .quick,.pcard:focus-within .pimg .quick{transform:none}
-.quick .btn{flex:1}
-.pname{font:600 1.15rem var(--head);margin-top:12px}
-.psize{color:var(--muted);font-size:1rem}
-.pprice{display:flex;gap:10px;align-items:baseline;margin-top:4px}
-.pprice b{font:600 1.25rem var(--head)}
-.pprice s{color:#97a5b3;font-size:.95rem}
-.add-mini{display:none}
-@media (hover:none){.pimg .quick{transform:none}}
-@media (max-width:1050px){.pgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:760px){.pgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.pname{font-size:1.02rem}.quick .btn{padding:.55rem .4rem;font-size:.85rem}}
-
-/* ---------- Template motion helpers ---------- */
-.armed .skew-in{opacity:0;transform:translateY(50px) skew(5deg,5deg)}
-.armed .rise{opacity:0;transform:translateY(30px)}
-.armed .slide-l{opacity:0;transform:translateX(-30px)}
-.skew-in,.rise,.slide-l{transition:opacity .9s var(--ease),transform .9s var(--ease)}
-.armed.in .skew-in,.armed.in .rise,.armed.in .slide-l{opacity:1;transform:none}
-
-/* ---------- Different ---------- */
-.diff{background:var(--soft);border-radius:var(--r);padding-top:clamp(48px,7vw,96px);position:relative;overflow:hidden}
-.diff h2{text-align:center;font:500 clamp(2.4rem,4.8vw,4.2rem)/1.1 var(--head);padding-inline:16px}
-.diff-stage{position:relative;height:var(--stage,560px);margin-top:clamp(30px,4vw,56px)}
-.diff-cols{position:absolute;inset:0 clamp(16px,4vw,60px);display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,28px);align-items:end;z-index:2}
-.ditem{position:relative;height:var(--tall,492px);padding-left:44px;transition:transform 1.2s var(--ease)}
-.ditem.short{height:var(--short,322px)}
-.armed .ditem{transform:translateY(105%)}
-.armed.in .ditem{transform:none}
-.armed.in .ditem:nth-child(1){transition-delay:.25s}.armed.in .ditem:nth-child(3){transition-delay:.4s}
-.armed.in .ditem:nth-child(2){transition-delay:.7s}.armed.in .ditem:nth-child(4){transition-delay:.85s}
-.ditem .ln{position:absolute;left:6px;top:0;bottom:0;width:2px;background:#5f6b77}
-.ditem .ln::before{content:"";position:absolute;left:-4.5px;top:0;width:11px;height:11px;border-radius:50%;background:#5f6b77}
-.ditem svg.ic{width:clamp(34px,3vw,44px);height:clamp(34px,3vw,44px);color:var(--blue);display:block;margin-top:-6px}
-.ditem h3{font:400 clamp(1.25rem,2vw,1.85rem)/1.3 var(--head);color:var(--ink);margin-top:16px;max-width:12ch}
-.capsules{position:absolute;left:0;right:0;bottom:0;height:var(--strip,170px);z-index:1;overflow:hidden}
-.capsules::after{content:"";position:absolute;inset:0 0 auto 0;height:60%;background:linear-gradient(var(--soft),rgba(241,245,249,0));pointer-events:none}
-.cap{position:absolute;border-radius:999px;box-shadow:inset -6px -6px 12px rgba(0,0,0,.14),inset 4px 4px 8px rgba(255,255,255,.35),0 8px 14px rgba(0,0,0,.08);animation:drift 7s ease-in-out infinite}
-.tab{position:absolute;border-radius:50%;box-shadow:inset -5px -5px 10px rgba(0,0,0,.1),inset 4px 4px 8px rgba(255,255,255,.4),0 6px 12px rgba(0,0,0,.07);animation:drift 8s ease-in-out infinite}
-@keyframes drift{50%{translate:0 -6px}}
-@media (max-width:900px){.diff{--stage:500px;--tall:420px;--short:280px}}
-@media (max-width:700px){.diff-stage{height:auto;padding-bottom:104px}.diff-cols{position:relative;inset:auto;grid-template-columns:1fr 1fr;row-gap:34px;padding-inline:16px}.ditem{height:240px;padding-left:30px}.ditem.short{height:190px}.ditem h3{font-size:1.15rem}.capsules{height:150px}}
-
-/* ---------- Rx flow ---------- */
-.flow{background:#111111;color:var(--white);border-radius:var(--r);padding:clamp(36px,7vw,108px) clamp(24px,5.5vw,84px) clamp(40px,6vw,96px);position:relative;overflow:hidden}
-.flow-top{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;padding-bottom:clamp(36px,5vw,64px);border-bottom:1px solid #333}
-.flow-top>div{flex:1 1 520px;min-width:0}
-.flow h2{font:500 clamp(2.4rem,4.6vw,4.4rem)/1.1 var(--body);letter-spacing:-.01em;transform-origin:left}
-.flow p{color:#a5a5a5;max-width:44rem;margin-top:18px;font-size:clamp(1.1rem,1.4vw,1.35rem);line-height:1.5}
-.flow .btn{padding:1.15rem 2.1rem;font-size:1.1rem}
-.steps{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:clamp(40px,6vw,96px)}
-.step{display:flex;align-items:center;gap:clamp(12px,1.6vw,24px);flex:0 1 auto;min-width:0}
-.step .num{width:clamp(66px,5.4vw,78px);height:clamp(66px,5.4vw,78px);border-radius:50%;background:#2a2a2a;display:grid;place-content:center;text-align:center;font:400 clamp(.95rem,1.25vw,1.15rem)/1.45 var(--body);color:#a5adb5}
-.step h3{font:500 clamp(1.15rem,1.65vw,1.55rem)/1.2 var(--body);color:var(--white);white-space:nowrap}
-.step .num{flex:none;color:#a5a5a5}
-.arrow{flex:1 1 90px;max-width:150px;min-width:64px;height:auto;align-self:flex-start;margin-top:0}
-.arrow .dash{fill:none;stroke:#a5adb5;stroke-width:2;stroke-linecap:round;stroke-dasharray:4 6;animation:dash 1.4s linear infinite}
-.arrow .head{fill:#a5adb5}
-@keyframes dash{to{stroke-dashoffset:-20}}
-.armed.in .steps>*:nth-child(1){transition-delay:.3s}.armed.in .steps>*:nth-child(2){transition-delay:.45s}.armed.in .steps>*:nth-child(3){transition-delay:.6s}.armed.in .steps>*:nth-child(4){transition-delay:.75s}.armed.in .steps>*:nth-child(5){transition-delay:.9s}.armed.in .steps>*:nth-child(6){transition-delay:1.05s}.armed.in .steps>*:nth-child(7){transition-delay:1.2s}
-.armed.in .flow-top .rise:nth-of-type(1){transition-delay:.15s}
-@media (max-width:1240px){.steps{flex-direction:column;align-items:flex-start;flex-wrap:nowrap;row-gap:6px}.arrow{width:46px;min-width:0;flex:none;margin-left:12px;transform:rotate(80deg)}.armed .steps .arrow.slide-l{transform:translateX(-30px) rotate(80deg)}.armed.in .steps .arrow.slide-l{transform:rotate(80deg)}}
-
-/* ---------- Trust marquee ---------- */
-.trust-h{text-align:center;font-size:clamp(2.2rem,4.4vw,3.8rem);font-weight:500;max-width:22ch;margin:0 auto 46px}
-.trust-h .b{color:var(--blue)}.trust-h .g{color:var(--green-d)}
-.tm{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
-.tm+.tm{margin-top:16px}
-.tm-track{display:flex;gap:16px;width:max-content;animation:marq 60s linear infinite}
-.tm.rev .tm-track{animation-name:marqR}
-.tm:hover .tm-track{animation-play-state:paused}
-.tcard{width:380px;background:var(--soft);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:12px;flex:none}
-.tcard .hl{font:500 1.35rem var(--head)}
-.tcard p{color:#4a5b6c;font-size:1rem}
-.tcard .who{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:8px}
-.tcard .who i{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--white)}
-.tcard .who i svg{width:24px;height:24px}
-.tcard .who b{font:600 .98rem var(--head);display:block}
-.tcard .who small{color:var(--muted);font-size:.9rem}
-@media (max-width:520px){.tcard{width:300px}}
-
-/* ---------- Scroll story ---------- */
-.story{height:300vh;position:relative;padding:0}
-.story-sticky{position:sticky;top:0;height:100vh;height:100svh;display:grid;place-items:center;overflow:hidden}
-.story-text{font:400 clamp(2.1rem,5.2vw,4.8rem)/1.16 var(--head);text-align:center;max-width:15em;padding-inline:max(16px,env(safe-area-inset-left,0px))}
-.story-text .w{color:#b6c1cc;transition:color .25s}
-.story-text .w.on{color:var(--ink)}
-.story-text .w.on.g{color:var(--green-d)}.story-text .w.on.b{color:var(--blue)}
-.story-pill{display:inline-block;width:2.4em;height:1.1em;vertical-align:-.12em;margin-inline:.15em}
-.story-expand{position:absolute;border-radius:999px;overflow:hidden;background:radial-gradient(120% 120% at 20% 10%,#2a93d6,var(--blue) 45%,var(--navy));will-change:left,top,width,height}
-.story-expand .packs{position:absolute;inset:0}
-.story-expand .packs div{position:absolute;filter:drop-shadow(0 20px 26px rgba(0,0,0,.3))}
-.story-expand .packs svg{width:100%;height:auto;display:block}
-.story-expand .cap-txt{position:absolute;left:6%;bottom:8%;right:6%;color:var(--white);opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s var(--ease)}
-.story-expand.full .cap-txt{opacity:1;transform:none}
-.cap-txt h3{font:600 clamp(1.8rem,4vw,3.4rem)/1.1 var(--head);max-width:16ch}
-.cap-txt p{font-size:clamp(1.05rem,1.4vw,1.25rem);margin-top:12px;color:#d6e6f3;max-width:34rem}
-.cap-txt .btn{margin-top:22px}
-
-/* ---------- Shop ---------- */
-.shop-tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
-.chip{padding:.7rem 1.2rem;border-radius:999px;border:1.5px solid #c7d2dc;background:var(--white);font:500 1rem var(--head);cursor:pointer;transition:.25s}
-.chip:hover{border-color:var(--ink)}
-.chip.on{background:var(--blue);border-color:var(--blue);color:var(--white)}
-.shop-note{color:var(--muted);font-size:.98rem;margin-top:-14px;margin-bottom:24px}
-.empty{grid-column:1/-1;text-align:center;padding:50px;background:var(--soft);border-radius:var(--r);color:var(--muted)}
-
-/* ---------- Blog ---------- */
-.posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-.post{text-decoration:none;display:flex;flex-direction:column;gap:14px}
-.post .cover{border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;max-width:100%;position:relative}
-.post .cover .in{position:absolute;inset:0;transition:transform .8s var(--ease)}
-.post:hover .cover .in{transform:scale(1.07)}
-.post .cover .tag{position:absolute;left:14px;bottom:14px;background:var(--white);border-radius:10px;padding:.4rem .8rem;font:500 .9rem var(--body);color:var(--ink)}
-.post h3{font:500 1.3rem/1.35 var(--head)}
-.post p{color:var(--muted);font-size:1rem}
-@media (max-width:900px){.posts{grid-template-columns:1fr}}
-
-/* ---------- About/visit ---------- */
-.visit{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
-.visit .card{background:var(--soft);border-radius:var(--r);padding:clamp(28px,4vw,48px);min-width:0}
-.visit h2{font-size:clamp(2rem,3.6vw,3rem);font-weight:600}
-.visit .lead{font-size:1.15rem;color:#3b4b5c;margin-top:16px;max-width:36rem}
-.vrow{display:flex;gap:14px;align-items:flex-start;padding-block:14px;border-bottom:1px solid var(--line)}
-.vrow:last-child{border-bottom:0}
-.vrow i{flex:none;width:46px;height:46px;border-radius:12px;background:var(--blue);color:var(--white);display:grid;place-items:center}
-.vrow i svg{width:22px;height:22px}
-.vrow b{font:600 1.02rem var(--head);display:block}
-.vrow span{color:#3b4b5c}
-.copy{margin-left:8px;border:1px solid #c7d2dc;background:var(--white);border-radius:999px;padding:2px 10px;font:600 .8rem var(--head);color:var(--blue);cursor:pointer}
-.spec-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
-.spec-list div{background:var(--white);border-radius:14px;padding:16px}
-.spec-list b{font:600 1.05rem var(--head);display:block;color:var(--blue)}
-.spec-list span{font-size:.98rem;color:var(--muted)}
-@media (max-width:900px){.visit{grid-template-columns:1fr}}
-@media (max-width:480px){.spec-list{grid-template-columns:1fr}}
-
-/* ---------- Footer ---------- */
-footer{isolation:isolate;background:var(--navy);color:var(--white);border-radius:28px 28px 0 0;margin-top:40px;position:relative;overflow:hidden;padding-block:20px 22px}
-.fcards{display:grid;grid-template-columns:1.2fr .7fr 1.2fr;gap:16px;position:relative;z-index:2}
-.fcard{background:var(--navy-2);border-radius:var(--r);padding:28px;min-width:0}
-.fcard h4{font:400 1.55rem/1.3 var(--head)}
-.fcard h5{font:600 1.05rem var(--head);margin:0 0 16px}
-.fcard ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-.fcard a{text-decoration:none;color:#c2d3e2}
-.fcard a:hover{color:var(--white)}
-.fform{display:grid;gap:10px;margin-top:20px}
-.fform input{font:inherit;padding:.9rem 1rem;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.18);color:var(--white);text-align:center}
-.fform input::placeholder{color:#9db2c6}
-.cline{display:flex;justify-content:space-between;align-items:center;gap:10px;background:rgba(0,0,0,.22);border-radius:12px;padding:10px 10px 10px 16px;margin-top:12px;font:500 1.1rem var(--head);min-width:0}
-.cline span{overflow-wrap:anywhere}
-.cline a{flex:none;width:42px;height:42px;border-radius:10px;background:var(--green);color:var(--navy);display:grid;place-items:center}
-.cline a svg{width:20px;height:20px}
-.wordmark{position:relative;z-index:3;font:800 var(--wm,12vw)/.86 var(--head);letter-spacing:-.035em;margin-top:44px;white-space:nowrap;overflow:hidden;padding-bottom:.08em;text-align:center}
-.wordmark span{display:inline-block;transform:translateY(110%);transition:transform 1.1s var(--ease);transition-delay:calc(var(--i)*45ms)}
-.wordmark .w1{color:var(--white)}.wordmark .w2{color:var(--green)}
-.wordmark .sp{width:.28em}
-.wordmark.in span{transform:none}
-.fbottom{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#a9bdd0;font-size:.95rem;margin-top:22px;position:relative;z-index:2}
-.fbottom nav{display:flex;gap:20px;flex-wrap:wrap}
-.fbottom a{text-decoration:none}
-.fbottom a:hover{color:var(--white)}
-.sq{position:absolute;background:rgba(255,255,255,.08);border-radius:4px;z-index:0;pointer-events:none;animation:sq 6s ease-in-out infinite}
-@keyframes sq{0%,100%{opacity:0;transform:scale(.6)}50%{opacity:1;transform:scale(1)}}
-@media (max-width:900px){.fcards{grid-template-columns:1fr}}
-
-/* ---------- Floating cart ---------- */
-.fab{position:fixed;right:max(18px,calc(env(safe-area-inset-right,0px) + 18px));bottom:calc(env(safe-area-inset-bottom,0px) + 18px);z-index:40;display:flex;align-items:center;gap:10px;background:var(--navy);color:var(--white);border:0;border-radius:12px;padding:.85rem 1.2rem;font:600 1rem var(--head);cursor:pointer;box-shadow:0 14px 30px rgba(6,42,71,.3);transition:transform .3s var(--ease)}
-.fab:hover{transform:translateY(-3px)}
-.fab svg{width:20px;height:20px}
-.fab b{background:var(--green);color:var(--navy);border-radius:8px;padding:0 8px;font-size:.9rem}
-
-/* ---------- Drawer & modals ---------- */
-.scrim{position:fixed;inset:0;background:rgba(6,26,44,.5);z-index:80;opacity:0;pointer-events:none;transition:opacity .4s}
-.scrim.on{opacity:1;pointer-events:auto}
-.drawer{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--white);z-index:90;transform:translateX(100%);transition:transform .55s var(--ease);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-right:env(safe-area-inset-right,0px)}
-.drawer.on{transform:none}
-.dhead{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1px solid var(--line)}
-.dhead h3{font:600 1.5rem var(--head)}
-.xbtn{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);background:var(--white);cursor:pointer;display:grid;place-items:center;font-size:1.3rem;line-height:1}
-.xbtn:hover{border-color:var(--ink)}
-.dbody{flex:1;overflow:auto;padding:12px 24px}
-.citem{display:grid;grid-template-columns:76px 1fr auto;gap:14px;align-items:center;padding-block:14px;border-bottom:1px solid var(--line);animation:loadIn .5s var(--ease) both}
-.citem .th{width:76px;height:76px;border-radius:14px;background:var(--soft);display:grid;place-items:center}
-.citem .th svg{width:66px;height:66px}
-.citem h4{font:600 1rem var(--head)}
-.citem small{color:var(--muted)}
-.qty{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;margin-top:6px}
-.qty button{width:34px;height:34px;border:0;background:none;cursor:pointer;font-size:1.15rem}
-.qty span{min-width:26px;text-align:center;font:600 1rem var(--head)}
-.citem .pr{text-align:right;font:600 1.05rem var(--head)}
-.citem .rm{display:block;border:0;background:none;color:var(--muted);font-size:.85rem;cursor:pointer;margin-top:6px;text-decoration:underline}
-.dfoot{padding:20px 24px;border-top:1px solid var(--line);display:grid;gap:12px}
-.drow{display:flex;justify-content:space-between;font-size:1.05rem}
-.drow.tot{font:600 1.3rem var(--head)}
-.dempty{text-align:center;padding:60px 10px;color:var(--muted)}
-.dempty svg{width:70px;height:70px;color:#c7d2dc;margin-bottom:12px}
-.modal{position:fixed;inset:0;z-index:95;display:grid;place-items:center;padding:16px;pointer-events:none}
-.mbox{background:var(--white);border-radius:24px;width:min(980px,100%);max-height:calc(100svh - 32px);overflow:auto;opacity:0;transform:translateY(40px) scale(.97);transition:.5s var(--ease);position:relative}
-.modal.on{pointer-events:auto}
-.modal.on .mbox{opacity:1;transform:none}
-.mbox .xbtn{position:absolute;right:16px;top:16px;z-index:2}
-.pd{display:grid;grid-template-columns:1fr 1fr}
-.pd-img{background:var(--soft);display:grid;place-items:center;padding:40px;min-height:380px;position:relative}
-.pd-img svg{width:85%;height:auto;animation:bob 6s ease-in-out infinite}
-.pd-info{padding:44px 36px;display:flex;flex-direction:column;gap:14px;min-width:0}
-.pd-info .cat{font:600 .85rem var(--head);letter-spacing:.12em;text-transform:uppercase;color:var(--green-d)}
-.pd-info h2{font:600 2rem/1.15 var(--head)}
-.pd-info .pprice b{font-size:1.7rem}
-.pd-info ul{margin:0;padding-left:20px;color:#3b4b5c;display:grid;gap:6px}
-.pd-info .rxnote{background:var(--blue-soft);color:var(--blue-d);border-radius:12px;padding:12px 14px;font-size:.98rem}
-.pd-buy{display:flex;gap:10px;align-items:center;margin-top:8px;flex-wrap:wrap}
-.pd-buy .qty{margin:0}
-.pd-buy .qty button{width:44px;height:48px}
-@media (max-width:760px){.pd{grid-template-columns:1fr}.pd-img{min-height:260px;padding:24px}.pd-info{padding:26px 22px}}
-.co{padding:40px 36px;width:min(640px,100%)}
-.co h2{font:600 1.9rem var(--head);margin-bottom:6px}
-.co .sub{color:var(--muted);margin-bottom:20px}
-.co form{display:grid;gap:14px}
-.co label{display:grid;gap:6px;font:600 .95rem var(--head)}
-.co input,.co textarea,.co select{font:inherit;font-size:1.02rem;padding:.85rem 1rem;border:1.5px solid var(--line);border-radius:12px;background:var(--white);color:var(--ink);width:100%}
-.co input:focus,.co textarea:focus,.co select:focus{border-color:var(--blue);outline:none}
-.co .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.co .sum{background:var(--soft);border-radius:14px;padding:14px 16px;font-size:.98rem;display:grid;gap:4px}
-.co .sum div{display:flex;justify-content:space-between;gap:10px}
-.co .done{text-align:center;display:grid;gap:14px;justify-items:center;padding:10px 0}
-.co .done .tick{width:80px;height:80px;border-radius:50%;background:var(--green-soft);display:grid;place-items:center}
-.co .done .tick svg{width:44px;height:44px;stroke:var(--green-d);stroke-dasharray:40;stroke-dashoffset:40;animation:draw .7s .2s var(--ease) forwards}
-@keyframes draw{to{stroke-dashoffset:0}}
-.co .err{color:#b42318;font-size:.95rem}
-@media (max-width:560px){.co{padding:30px 20px}.co .two{grid-template-columns:1fr}}
-
-.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 90px);transform:translate(-50%,30px);background:var(--ink);color:var(--white);padding:.85rem 1.3rem;border-radius:12px;font:500 1rem var(--head);z-index:120;opacity:0;pointer-events:none;transition:.4s var(--ease);display:flex;gap:10px;align-items:center;max-width:calc(100% - 32px)}
-.toast.on{opacity:1;transform:translate(-50%,0)}
-.toast i{width:22px;height:22px;border-radius:50%;background:var(--green);display:grid;place-items:center;color:var(--navy);font-style:normal;font-weight:700;flex:none}
-
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
-  .badges-track,.pill-track,.tm-track{animation:none!important}
-  .story{height:auto}.story-sticky{position:relative;height:auto;padding-block:80px;display:block}
-  .story-text .w{color:var(--ink)}
-  .story-expand{position:relative!important;left:auto!important;top:auto!important;width:auto!important;height:420px!important;border-radius:24px;margin:30px 16px 0}
-  .story-expand .cap-txt{opacity:1;transform:none}
-}
-</style>
-</head>
-<body>
-<!-- ========== NAV ========== -->
-<header class="nav" id="nav">
-  <div class="wrap">
-    <a class="brand" href="#home" aria-label="Naik Pharmacy home">
-      <svg class="logo" viewBox="0 0 360 280" aria-hidden="true"><use href="#np-logo"/></svg>
-      <b>NAIK <em>PHARMACY</em></b>
-    </a>
-    <ul class="links" id="links">
-      <li><a href="#home" class="active">Home</a></li>
-      <li><a href="#shop">Shop</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#blog">Blog</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="nav-icons">
-      <button class="icon-btn" id="searchBtn" aria-label="Search products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
-      <button class="icon-btn" id="cartBtn" aria-label="Open cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg><span class="badge-count" id="navCount">0</span></button>
-      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-    </div>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Exonol Pharmaceuticals — Coding a Healthier Tomorrow</title><meta name="description" content="Exonol Pharmaceuticals, Mumbai: patient-focused, high-quality dermatology medicines — EXOZINE 5mg, EXZOLE-SB 130mg and EDOX-LB."><meta name="theme-color" content="#005A90"><link rel="icon" href="assets/img/mark.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/style.css"></head>
+<body class="page-home">
+<header class="site-header over-hero">
+  <div class="wrap hdr">
+    <a class="brand" href="index.html" aria-label="Exonol Pharmaceuticals — Home"><svg viewBox="0 0 103 38" role="img" aria-label="Exonol Pharmaceuticals"><path class="lg" d="M7.0,17.5c-0.3,0.2-0.2,0.7,0.1,0.9c0.3,0.1,0.7,0.3,1.0,0.4 c0.6,0.1,1.3,0.2,1.9,0.2c0.6-0.0,1.3-0.1,1.9-0.4c0.6-0.2,1.2-0.6,1.7-1.1l6.6-6.1l1.6,1.8l-6.6,6.1 c-0.8,0.7-1.7,1.3-2.7,1.7c-1.0,0.3-2.1,0.5-3.2,0.5c-1.1-0.0-2.1-0.2-3.1-0.7c-1-0.4-1.8-1.1-2.6-1.9 s-1.3-1.7-1.7-2.7c-0.3-1.0-0.5-2.1-0.5-3.2c0.0-1.1,0.2-2.1,0.7-3.1c0.4-1,1.0-1.8,1.9-2.6L10.7,1l1.7,1.8 L5.8,9c-0.5,0.4-0.9,1.0-1.2,1.6c-0.3,0.6-0.4,1.2-0.5,1.8c-0.0,0.6-0.0,1.2,0.0,1.9 c0.0,0.3,0.1,0.7,0.3,1.0c0.1,0.4,0.6,0.5,0.9,0.2l9.0-8.4l1.6,1.8L7.0,17.5z M30.9,15.4l5.8,6.3h-2.7l-4.4-4.7c-0.2-0.2-0.6-0.2-0.9,0l-4.4,4.7H21.6l5.8-6.3 c0.2-0.2,0.2-0.6,0-0.8l-5.8-6.3h2.7l4.4,4.7c0.2,0.2,0.6,0.2,0.9,0l4.4-4.7h2.7l-5.8,6.3 C30.7,14.8,30.7,15.1,30.9,15.4z M45.2,8.2c0.8,0,1.7,0.1,2.5,0.5c0.8,0.3,1.5,0.8,2.1,1.4 c0.6,0.6,1.1,1.3,1.4,2.1c0.3,0.8,0.5,1.6,0.5,2.5s-0.1,1.7-0.5,2.5c-0.3,0.8-0.8,1.5-1.4,2.1 c-0.6,0.6-1.3,1.1-2.1,1.4c-0.8,0.3-1.6,0.5-2.5,0.5h-2.2c-0.8,0-1.7-0.1-2.5-0.5 c-0.8-0.3-1.5-0.8-2.1-1.4c-0.6-0.6-1.1-1.3-1.4-2.1c-0.3-0.8-0.5-1.6-0.5-2.5s0.1-1.7,0.5-2.5 c0.3-0.8,0.8-1.5,1.4-2.1c0.6-0.6,1.3-1.1,2.1-1.4c0.8-0.3,1.6-0.5,2.5-0.5H45.2z M45.2,19.7 c0.6,0,1.2-0.1,1.8-0.3c0.5-0.2,1.0-0.5,1.5-1.0c0.4-0.4,0.7-0.9,1.0-1.5c0.2-0.5,0.3-1.1,0.3-1.8 c0-0.6-0.1-1.2-0.3-1.8c-0.2-0.5-0.5-1.0-1.0-1.5c-0.4-0.4-0.9-0.7-1.5-1.0c-0.5-0.2-1.1-0.3-1.8-0.3 h-2.2c-0.6,0-1.2,0.1-1.8,0.3c-0.5,0.2-1.0,0.5-1.5,1.0s-0.7,0.9-1.0,1.5c-0.2,0.5-0.3,1.1-0.3,1.8 c0,0.6,0.1,1.2,0.3,1.8c0.2,0.5,0.5,1.0,1.0,1.5c0.4,0.4,0.9,0.7,1.5,1.0c0.5,0.2,1.1,0.3,1.8,0.3H45.2z M67.0,8.2h1.9v11.4c0,0.5-0.1,1.0-0.5,1.4c-0.3,0.3-0.8,0.5-1.4,0.5 c-0.2,0-0.5-0.0-0.8-0.1c-0.2-0.1-0.4-0.2-0.6-0.5l-9.3-10.7v11.4h-1.9V10.2c0-0.2,0.0-0.5,0.1-0.7 c0.1-0.2,0.2-0.4,0.4-0.6c0.1-0.1,0.3-0.3,0.6-0.4c0.2-0.1,0.5-0.1,0.7-0.1c0.1,0,0.4,0.0,0.6,0.1 c0.2,0.0,0.4,0.2,0.5,0.3l9.5,10.9V8.2z M80.0,8.2c0.8,0,1.7,0.1,2.5,0.5c0.8,0.3,1.5,0.8,2.1,1.4 c0.6,0.6,1.1,1.3,1.4,2.1c0.3,0.8,0.5,1.6,0.5,2.5s-0.1,1.7-0.5,2.5c-0.3,0.8-0.8,1.5-1.4,2.1 c-0.6,0.6-1.3,1.1-2.1,1.4c-0.8,0.3-1.6,0.5-2.5,0.5h-2.2c-0.8,0-1.7-0.1-2.5-0.5 c-0.8-0.3-1.5-0.8-2.1-1.4c-0.6-0.6-1.1-1.3-1.4-2.1c-0.3-0.8-0.5-1.6-0.5-2.5s0.1-1.7,0.5-2.5 c0.3-0.8,0.8-1.5,1.4-2.1c0.6-0.6,1.3-1.1,2.1-1.4c0.8-0.3,1.6-0.5,2.5-0.5H80.0z M80.0,19.7 c0.6,0,1.2-0.1,1.8-0.3c0.5-0.2,1.0-0.5,1.5-1.0c0.4-0.4,0.7-0.9,1.0-1.5c0.2-0.5,0.3-1.1,0.3-1.8 c0-0.6-0.1-1.2-0.3-1.8c-0.2-0.5-0.5-1.0-1.0-1.5c-0.4-0.4-0.9-0.7-1.5-1.0c-0.5-0.2-1.1-0.3-1.8-0.3 h-2.2c-0.6,0-1.2,0.1-1.8,0.3c-0.5,0.2-1.0,0.5-1.5,1.0s-0.7,0.9-1.0,1.5c-0.2,0.5-0.3,1.1-0.3,1.8 c0,0.6,0.1,1.2,0.3,1.8c0.2,0.5,0.5,1.0,1.0,1.5c0.4,0.4,0.9,0.7,1.5,1.0c0.5,0.2,1.1,0.3,1.8,0.3H80.0z M101.5,19.7v1.9H91.0c-0.2,0-0.5-0.0-0.7-0.1c-0.2-0.1-0.4-0.2-0.6-0.4 c-0.1-0.1-0.3-0.3-0.4-0.6c-0.1-0.2-0.1-0.5-0.1-0.7V8.2h1.9v11.4H101.5z"/><path class="lb" d="M18.6,35.0c-0.5,0-1.0-0.1-1.4-0.5v1.8c0,0.1-0.0,0.2-0.1,0.3 c-0.1,0.1-0.2,0.1-0.3,0.1s-0.2-0.0-0.3-0.1c-0.0-0.0-0.1-0.2-0.1-0.3v-3.8c0-0.6,0.2-1.2,0.7-1.7 c0.4-0.4,1.0-0.7,1.7-0.7c0.6,0,1.2,0.2,1.7,0.7s0.7,1.0,0.7,1.7c0,0.6-0.2,1.2-0.7,1.7 C19.8,34.7,19.2,35.0,18.6,35.0z M18.6,31c-0.4,0-0.7,0.1-1.0,0.4c-0.2,0.3-0.4,0.6-0.4,1.0 c0,0.4,0.1,0.7,0.4,1.0c0.2,0.3,0.6,0.4,1.0,0.4c0.4,0,0.7-0.1,1.0-0.4s0.4-0.6,0.4-1.0 c0-0.4-0.1-0.7-0.4-1.0S19.0,31,18.6,31z M26.0,34.9c-0.1,0-0.2-0.0-0.3-0.1c-0.0-0.1-0.1-0.2-0.1-0.3v-1.9 c0-0.4-0.1-0.7-0.4-1.0c-0.2-0.3-0.6-0.4-1.0-0.4c-0.4,0-0.7,0.1-1.0,0.4c-0.2,0.3-0.4,0.6-0.4,1.0 l-0.0,2.0c0,0.1-0.0,0.2-0.1,0.3c-0.0,0.0-0.2,0.1-0.3,0.1c-0.1,0-0.2-0.0-0.3-0.1 c-0.0-0.1-0.1-0.2-0.1-0.3v-5.8c0-0.1,0.0-0.2,0.1-0.3s0.2-0.1,0.3-0.1s0.2,0.0,0.3,0.1 c0.1,0.1,0.1,0.2,0.1,0.3v1.8c0.4-0.3,0.9-0.5,1.4-0.5c0.6,0,1.2,0.2,1.7,0.7c0.4,0.4,0.7,1.0,0.7,1.7v1.9 c0,0.1-0.0,0.2-0.1,0.3C26.2,34.8,26.1,34.9,26.0,34.9z M31.4,34.9c-0.2,0-0.4-0.1-0.4-0.5c-0.4,0.3-0.9,0.5-1.5,0.5 c-0.6,0-1.2-0.2-1.7-0.7c-0.4-0.4-0.7-1.0-0.7-1.7c0-0.6,0.2-1.2,0.7-1.7c0.4-0.4,1.0-0.7,1.7-0.7 c0.6,0,1.2,0.2,1.7,0.7c0.4,0.4,0.7,1.0,0.7,1.7v1.9c0,0.1-0.0,0.2-0.1,0.3C31.6,34.9,31.5,34.9,31.4,34.9z M29.4,31c-0.4,0-0.7,0.1-1.0,0.4s-0.4,0.6-0.4,1.0s0.1,0.7,0.4,1.0s0.6,0.4,1.0,0.4 c0.4,0,0.7-0.1,1.0-0.4s0.4-0.6,0.4-1.0s-0.1-0.7-0.4-1.0S29.8,31,29.4,31z M35.5,30.1L35.5,30.1c0.2,0.0,0.3,0.2,0.3,0.4c0,0.1-0.0,0.2-0.1,0.3 c-0.0,0.0-0.1,0.1-0.2,0.1c-0.0,0-0.1,0-0.2,0s-0.2,0-0.2,0c-0.4,0-0.7,0.1-1.0,0.4c-0.3,0.3-0.4,0.6-0.4,1.0 v1.9c0,0.1-0.0,0.2-0.1,0.2s-0.1,0.1-0.2,0.1c-0.1,0-0.2-0.0-0.2-0.1c-0.0-0.0-0.1-0.1-0.1-0.2v-1.9 c0-0.6,0.2-1.2,0.6-1.6c0.4-0.4,0.9-0.7,1.6-0.7h0.1H35.5z M45.1,35c-0.1,0-0.2-0.0-0.3-0.1c-0.0-0.0-0.1-0.1-0.1-0.3v-1.9 c0-0.4-0.1-0.7-0.4-1.0s-0.6-0.4-1.0-0.4c-0.3,0-0.6,0.0-0.8,0.2c-0.2,0.1-0.4,0.4-0.5,0.6 c-0.0,0.1-0.0,0.2-0.0,0.3c0,0.2,0,0.6,0,1.0c0,0.5,0,0.8,0,1.0c0,0.1-0.0,0.2-0.1,0.3 C41.3,34.9,41.2,35,41.0,35c-0.1,0-0.2-0.0-0.3-0.1c-0.1-0.0-0.1-0.2-0.1-0.3v-1.9c0-0.0,0-0.0,0-0.1 c0-0.0,0-0.1,0-0.1c0-0.0-0.0-0.1-0.0-0.3c-0.1-0.3-0.3-0.5-0.5-0.7s-0.5-0.2-0.8-0.2c-0.4,0-0.7,0.1-1.0,0.4 c-0.3,0.2-0.4,0.6-0.4,1.0c0-0.0,0,0.6,0,1.8c0,0.1-0.0,0.2-0.1,0.3c-0.1,0.1-0.2,0.1-0.3,0.1 c-0.1,0-0.2-0.0-0.3-0.1c-0.1-0.0-0.1-0.1-0.1-0.3v-1.9c0-0.6,0.2-1.2,0.7-1.7c0.4-0.4,1.0-0.7,1.7-0.7 c0.8,0,1.5,0.3,2.0,1.0c0.5-0.6,1.1-0.9,1.9-0.9c0.7,0,1.2,0.2,1.7,0.7c0.4,0.4,0.7,1.0,0.7,1.7 c0-0.0,0,0.6,0,1.8c0.0,0.1-0.0,0.2-0.1,0.3S45.2,35,45.1,35z M50.6,34.9c-0.2,0-0.4-0.1-0.4-0.5c-0.4,0.3-0.9,0.5-1.5,0.5 c-0.6,0-1.2-0.2-1.7-0.7c-0.4-0.4-0.7-1.0-0.7-1.7c0-0.6,0.2-1.2,0.7-1.7c0.4-0.4,1.0-0.7,1.7-0.7 c0.6,0,1.2,0.2,1.7,0.7c0.4,0.4,0.7,1.0,0.7,1.7v1.9c0,0.1-0.0,0.2-0.1,0.3C50.9,34.9,50.7,34.9,50.6,34.9z M48.7,31c-0.4,0-0.7,0.1-1.0,0.4s-0.4,0.6-0.4,1.0s0.1,0.7,0.4,1.0s0.6,0.4,1.0,0.4 c0.4,0,0.7-0.1,1.0-0.4s0.4-0.6,0.4-1.0s-0.1-0.7-0.4-1.0S49.1,31,48.7,31z M54.6,30.9c-0.0,0-0.1,0-0.2,0c-0.1,0-0.2,0-0.2,0c-0.4,0-0.7,0.1-1.0,0.4 c-0.2,0.2-0.4,0.6-0.4,1.0c0,0.4,0.1,0.7,0.4,1.0c0.2,0.2,0.6,0.4,1.0,0.4c0.0,0,0.1,0,0.2,0 c0.1,0,0.2,0,0.2,0c0.1,0,0.2,0.0,0.3,0.1c0.1,0.0,0.1,0.2,0.1,0.3c0,0.1-0.0,0.2-0.1,0.3 c-0.0,0.0-0.1,0.1-0.3,0.1c-0.1,0.0-0.3,0.0-0.5,0.0c-0.6,0-1.2-0.2-1.6-0.7c-0.4-0.4-0.7-1.0-0.7-1.7 c0-0.6,0.2-1.2,0.7-1.7c0.4-0.4,1.0-0.7,1.6-0.7h0.5c0.1,0,0.2,0.0,0.3,0.1c0.0,0.0,0.1,0.2,0.1,0.3 s-0.0,0.2-0.1,0.3C54.8,30.9,54.7,30.9,54.6,30.9z M56.8,33c0.1,0.3,0.3,0.5,0.5,0.7c0.2,0.1,0.5,0.2,0.8,0.2c0.0,0,0.1,0,0.3,0 c0.1,0,0.2,0,0.2,0c0.1,0.0,0.2,0.0,0.3,0.1c0.0,0.0,0.1,0.2,0.1,0.3c0,0.2-0.1,0.3-0.3,0.4 c-0.1,0.0-0.3,0.0-0.7,0.0c-0.6,0-1.2-0.2-1.7-0.7c-0.4-0.4-0.7-1.0-0.7-1.7c0-0.6,0.2-1.2,0.7-1.7 c0.4-0.4,1.0-0.7,1.7-0.7c0.5,0,0.9,0.1,1.3,0.4c0.4,0.2,0.7,0.6,0.9,1.1c0.0,0.2,0.1,0.4,0.1,0.7 c0,0.0,0,0.2,0,0.7H56.8z M58.2,31c-0.3,0-0.6,0.0-0.8,0.2c-0.2,0.1-0.4,0.4-0.5,0.7h2.7 C59.3,31.3,58.8,31,58.2,31z M63.6,34.9c-0.6,0-1.2-0.2-1.7-0.7c-0.4-0.4-0.7-1.0-0.7-1.7c0,0.0,0-0.6-0.0-1.8 c0-0.1,0.0-0.2,0.1-0.3c0.0-0.0,0.2-0.1,0.3-0.1c0.1,0,0.2,0.0,0.3,0.1c0.0,0.0,0.1,0.1,0.1,0.3v1.9 c0,0.4,0.1,0.7,0.4,1.0c0.2,0.2,0.6,0.4,1.0,0.4c0.4,0,0.7-0.1,1.0-0.4c0.2-0.2,0.4-0.6,0.4-1.0v-1.8 c0-0.1,0.0-0.2,0.1-0.3c0.0-0.1,0.2-0.1,0.3-0.1c0.1,0,0.2,0.0,0.3,0.1c0.0,0.0,0.1,0.1,0.1,0.3v1.8 c0,0.6-0.2,1.2-0.7,1.7S64.3,34.9,63.6,34.9z M69.7,34.9c-0.2,0.0-0.4,0.0-0.5,0.0c-0.6,0-1.2-0.2-1.6-0.6 c-0.4-0.4-0.7-1.0-0.7-1.7v-3.1c0-0.1,0.0-0.2,0.1-0.3s0.2-0.1,0.3-0.1c0.2,0,0.4,0.1,0.4,0.4 c0.0,0.1,0.0,0.3,0.0,0.6h2.0c0.1,0,0.2,0.0,0.3,0.1c0.0,0.1,0.1,0.2,0.1,0.3c0,0.1-0.0,0.2-0.1,0.3 s-0.2,0.1-0.3,0.1h-2.0v1.4c0,0.4,0.1,0.7,0.4,1.0c0.2,0.2,0.6,0.4,1.0,0.4c0.0,0,0.1,0,0.2,0 c0.1,0,0.2,0,0.2,0c0.1,0,0.2,0.0,0.3,0.1c0.0,0.0,0.1,0.2,0.1,0.3c0,0.1-0.0,0.2-0.1,0.3 S69.8,34.9,69.7,34.9z M71.4,29.5c-0.1,0-0.2-0.0-0.3-0.1c-0.1-0.1-0.1-0.2-0.1-0.3 c0-0.1,0.0-0.2,0.1-0.3c0.1-0.1,0.2-0.1,0.3-0.1c0.1,0,0.2,0.0,0.3,0.1c0.1,0.1,0.1,0.2,0.1,0.3 c0,0.1-0.0,0.2-0.1,0.3C71.6,29.5,71.5,29.5,71.4,29.5z M71.4,34.9c-0.1,0-0.2-0.0-0.3-0.1 c-0.1-0.1-0.1-0.2-0.1-0.3v-3.9c0-0.1,0.0-0.2,0.1-0.3S71.3,30,71.4,30c0.1,0,0.2,0.0,0.3,0.1 c0.1,0.1,0.1,0.2,0.1,0.3v3.9c0,0.1-0.0,0.2-0.1,0.3C71.6,34.8,71.5,34.9,71.4,34.9z M75.4,30.9c-0.0,0-0.1,0-0.2,0c-0.1,0-0.2,0-0.2,0c-0.4,0-0.7,0.1-1.0,0.4 c-0.2,0.2-0.4,0.6-0.4,1.0c0,0.4,0.1,0.7,0.4,1.0c0.2,0.2,0.6,0.4,1.0,0.4c0.0,0,0.1,0,0.2,0 c0.1,0,0.2,0,0.2,0c0.1,0,0.2,0.0,0.3,0.1c0.1,0.0,0.1,0.2,0.1,0.3c0,0.1-0.0,0.2-0.1,0.3 c-0.0,0.0-0.1,0.1-0.3,0.1c-0.1,0.0-0.3,0.0-0.5,0.0c-0.6,0-1.2-0.2-1.6-0.7c-0.4-0.4-0.7-1.0-0.7-1.7 c0-0.6,0.2-1.2,0.7-1.7c0.4-0.4,1.0-0.7,1.6-0.7h0.5c0.1,0,0.2,0.0,0.3,0.1c0.0,0.0,0.1,0.2,0.1,0.3 s-0.0,0.2-0.1,0.3C75.6,30.9,75.5,30.9,75.4,30.9z M80.9,34.9c-0.2,0-0.4-0.1-0.4-0.5c-0.4,0.3-0.9,0.5-1.5,0.5 c-0.6,0-1.2-0.2-1.7-0.7c-0.4-0.4-0.7-1.0-0.7-1.7c0-0.6,0.2-1.2,0.7-1.7c0.4-0.4,1.0-0.7,1.7-0.7 c0.6,0,1.2,0.2,1.7,0.7c0.4,0.4,0.7,1.0,0.7,1.7v1.9c0,0.1-0.0,0.2-0.1,0.3C81.1,34.9,81.0,34.9,80.9,34.9z M78.9,31c-0.4,0-0.7,0.1-1.0,0.4s-0.4,0.6-0.4,1.0s0.1,0.7,0.4,1.0s0.6,0.4,1.0,0.4 c0.4,0,0.7-0.1,1.0-0.4s0.4-0.6,0.4-1.0s-0.1-0.7-0.4-1.0S79.4,31,78.9,31z M82.6,34.9c-0.1,0-0.2-0.0-0.3-0.1c-0.1-0.1-0.1-0.2-0.1-0.3v-5.8 c0-0.1,0.0-0.2,0.1-0.3c0.1-0.0,0.2-0.1,0.3-0.1c0.1,0,0.2,0.0,0.3,0.1c0.1,0.1,0.1,0.2,0.1,0.3v5.8 c0,0.1-0.0,0.2-0.1,0.3C82.8,34.8,82.7,34.9,82.6,34.9z M84.8,34.8h-0.5c-0.1,0-0.2-0.0-0.3-0.1c-0.0-0.0-0.1-0.2-0.1-0.3 c0-0.1,0.0-0.2,0.1-0.3c0.0-0.0,0.1-0.1,0.3-0.1c0.0,0,0.1,0,0.2,0c0.1,0,0.2,0,0.2,0 c0.3,0,0.5-0.0,0.8-0.2s0.4-0.4,0.5-0.7h-2.4v-0.4c0-0.6,0.2-1.2,0.7-1.7c0.4-0.4,1.0-0.7,1.6-0.7h0.5 c0.1,0,0.2,0.0,0.3,0.1c0.0,0.0,0.1,0.2,0.1,0.3s-0.0,0.2-0.1,0.3c-0.0,0.0-0.1,0.1-0.3,0.1 c-0.0,0-0.1,0-0.3,0c-0.1,0-0.2,0-0.2,0c-0.3,0-0.6,0.0-0.8,0.2c-0.2,0.1-0.4,0.4-0.5,0.7h2.4v0.4 c0,0.6-0.2,1.2-0.7,1.7C86.0,34.6,85.5,34.8,84.8,34.8z"/></svg></a>
+    <nav class="pillnav" aria-label="Primary">
+      <span class="indicator" aria-hidden="true"></span>
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="medicines.html">Medicines</a>
+      <a href="medicines.html#divisions">Divisions</a>
+      <a href="https://store.exonolpharma.com/" target="_blank" rel="noopener">E-Pharmacy</a>
+    </nav>
+    <a class="hdr-cta " href="contact.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>Contact Us</a>
+    <button class="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
-  <div class="searchbar" id="searchbar"><div class="wrap"><input id="searchInput" type="search" placeholder="Search sunscreen, cleanser, folic acid…" aria-label="Search products"></div></div>
 </header>
+<div class="drawer" role="dialog" aria-label="Menu">
+  <a href="index.html" class="active">Home <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+  <a href="about.html">About Us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+  <a href="medicines.html">Medicines <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+  <a href="medicines.html#divisions">Divisions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+  <a href="https://store.exonolpharma.com/" target="_blank" rel="noopener">E-Pharmacy <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+  <a class="btn blue" href="contact.html">Contact Us <span class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
+</div>
 
-<!-- logo symbol, traced from Naik Pharmacy's own mark -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="np-logo" viewBox="60 100 360 280">
-    <circle cx="316" cy="200" r="76.5" fill="none" stroke="#88C040" stroke-width="27"/>
-    <path d="M86 271V200a77 77 0 0 1 154 0v68" fill="none" stroke="#0070B8" stroke-width="27" stroke-linecap="round"/>
-    <path d="M240 307v45" stroke="#88C040" stroke-width="27" stroke-linecap="round"/>
-    <rect x="305" y="166" width="22" height="68" rx="3" fill="#88C040"/>
-    <rect x="282" y="189" width="68" height="22" rx="3" fill="#88C040"/>
-  </symbol>
-</svg>
-
-<main id="home">
-<!-- ========== HERO ========== -->
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div class="hero-left">
-      <div>
-        <h1 class="load-in d1">Your <span class="b">Skin</span> &amp; <span class="g">Women's Health</span> Pharmacy</h1>
-        <p class="hero-sub load-in d2">Genuine derma, gynae and pregnancy care from LDA Gol Market, Lucknow. Order online and get it delivered to your door.</p>
-        <div class="hero-cta load-in d3">
-          <button class="btn btn-blue" data-open-rx><span class="roll"><span data-t="Upload Prescription">Upload Prescription</span></span></button>
-          <a class="btn btn-line" href="#shop"><span class="roll"><span data-t="Shop Products">Shop Products</span></span></a>
+<main>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-card">
+      <div class="hero-media">
+        <img class="fallback" src="assets/img/hero-poster.jpg" alt=""><video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/img/hero-poster.jpg" aria-hidden="true"><source src="assets/video/exonol-dna.webm" type="video/webm"><source src="assets/video/exonol-dna.mp4" type="video/mp4"></video>
+      </div>
+      <div class="hero-inner">
+        <div class="hero-title">
+        <span class="hero-eyebrow fade-up" style="--d:.05s">Exonol Pharmaceuticals · Mumbai, India</span>
+        <h1>
+          <span class="line"><span style="--d:.15s">Coding a</span></span>
+          <span class="line"><span style="--d:.3s"><em class="accent">Healthier</em> Tomorrow</span></span>
+        </h1>
+        </div>
+        <div class="hero-side">
+          <p class="fade-up" style="--d:.7s">There is a distinct difference between potential and action. While DNA contains the vast library of our genetic makeup, it is the Exon that tells the story.</p>
+          <div class="hero-ctas fade-up" style="--d:.85s">
+            <a class="btn" href="#medicines">Discover Our Medicines <span class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
+            <a class="btn ghost" href="https://store.exonolpharma.com/" target="_blank" rel="noopener">E-Pharmacy <span class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
+          </div>
+          <div class="hero-meta fade-up" style="--d:1s">
+            <span class="dots"><i style="background:#87C13F">Rx</i><i style="background:#fff"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="3" y="8" width="18" height="8" rx="4" fill="#87C13F" transform="rotate(-35 12 12)"/><path d="M12 6.3l3.2 4.6-6.6 4.6a4 4 0 0 1 0-.1z" fill="#0071B4"/></svg></i><i style="background:#0071B4;color:#fff">IN</i></span>
+            Licensed, patient-focused medicines for every region of India
+          </div>
         </div>
       </div>
-      <div class="badges load-in d4" aria-label="Our promises">
-        <div class="badges-track" id="badgeTrack"></div>
+      <span class="scroll-cue" aria-hidden="true"></span>
+    </div>
+  </section>
+
+  <!-- ================= INTRO ================= -->
+  <section class="intro">
+    <svg class="molecule m1" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="#87C13F" stroke-width="3"><polygon points="50,8 86,29 86,71 50,92 14,71 14,29"/><circle cx="50" cy="8" r="6" fill="#87C13F"/><circle cx="86" cy="71" r="6" fill="#0071B4" stroke="#0071B4"/><circle cx="14" cy="71" r="6" fill="#87C13F"/></g></svg>
+    <svg class="molecule m2" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="#0071B4" stroke-width="3"><polygon points="50,8 86,29 86,71 50,92 14,71 14,29"/><circle cx="86" cy="29" r="6" fill="#0071B4"/><circle cx="50" cy="92" r="6" fill="#87C13F" stroke="#87C13F"/></g></svg>
+    <div class="wrap">
+      <span class="label" data-reveal><svg viewBox="0 0 22 23" aria-hidden="true"><path fill="#87C13F" d="M7.0,17.5c-0.3,0.2-0.2,0.7,0.1,0.9c0.3,0.1,0.7,0.3,1.0,0.4 c0.6,0.1,1.3,0.2,1.9,0.2c0.6-0.0,1.3-0.1,1.9-0.4c0.6-0.2,1.2-0.6,1.7-1.1l6.6-6.1l1.6,1.8l-6.6,6.1 c-0.8,0.7-1.7,1.3-2.7,1.7c-1.0,0.3-2.1,0.5-3.2,0.5c-1.1-0.0-2.1-0.2-3.1-0.7c-1-0.4-1.8-1.1-2.6-1.9 s-1.3-1.7-1.7-2.7c-0.3-1.0-0.5-2.1-0.5-3.2c0.0-1.1,0.2-2.1,0.7-3.1c0.4-1,1.0-1.8,1.9-2.6L10.7,1l1.7,1.8 L5.8,9c-0.5,0.4-0.9,1.0-1.2,1.6c-0.3,0.6-0.4,1.2-0.5,1.8c-0.0,0.6-0.0,1.2,0.0,1.9 c0.0,0.3,0.1,0.7,0.3,1.0c0.1,0.4,0.6,0.5,0.9,0.2l9.0-8.4l1.6,1.8L7.0,17.5z"/></svg> Who we are</span>
+      <p class="fill-text">At Exonol Pharmaceuticals we strip away the non-essential to focus purely on efficacy and results — because while DNA holds the library, it is the Exon that tells the story.</p>
+      <div class="collage">
+        <figure class="c1" data-reveal="scale"><img data-speed="0.05" src="assets/img/lab.jpg" alt="Scientists working in a pharmaceutical laboratory" loading="lazy"><figcaption>Research &amp; Development</figcaption></figure>
+        <figure class="c2" data-reveal="scale" style="--d:.1s"><img src="assets/img/stethoscope.jpg" alt="Stethoscope and medicine vials" loading="lazy"><figcaption>Patient Care</figcaption></figure>
+        <figure class="c3" data-reveal="scale" style="--d:.2s"><img src="assets/img/quality.jpg" alt="Quality control review" loading="lazy"><figcaption>Quality Control</figcaption></figure>
+        <figure class="c4" data-reveal="scale" style="--d:.3s"><img src="assets/img/warehouse.jpg" alt="Pharmaceutical supply warehouse" loading="lazy"><figcaption>Supply Chain</figcaption></figure>
       </div>
     </div>
-    <div class="hero-right">
-      <div class="hero-visual load-in d2" id="heroVisual">
-        <svg class="mark-bg" viewBox="0 0 360 280" aria-hidden="true"><use href="#np-logo"/></svg>
-        <span class="chip"><i></i>Now delivering across Lucknow</span>
-        <div class="hero-tag">★ 5.0 on Google<small>Naik Pharmacy, Lucknow</small></div>
-      </div>
-      <div class="stats load-in d4">
-        <div class="stat"><b data-count="5" data-dec="1">0</b><span>Google rating</span></div>
-        <div class="stat"><b data-count="7">0</b><span>Days a week open</span></div>
-        <div class="stat"><b data-count="100" data-suf="%">0</b><span>Genuine products</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ========== CATEGORIES ========== -->
-<section style="padding-top:20px">
-  <div class="wrap"><p class="cats-title rv" data-rv>Popular Categories</p></div>
-  <div class="pill-marquee rv" data-rv><div class="pill-track" id="pillTrack"></div></div>
-</section>
-
-<!-- ========== FLASH SALE ========== -->
-<section id="sale">
-  <div class="wrap">
-    <div class="sec-head rv" data-rv>
-      <h2>Flash Sale</h2>
-      <a class="btn btn-line btn-sm" href="#shop"><span class="roll"><span data-t="View All">View All</span></span></a>
-    </div>
-    <div class="pgrid" id="saleGrid"></div>
-  </div>
-</section>
-
-<!-- ========== DIFFERENT ========== -->
-<section id="about">
-  <div class="wrap">
-    <div class="diff anim-group" id="diff">
-      <h2 class="skew-in">What Makes Us Different?</h2>
-      <div class="diff-stage">
-        <div class="diff-cols">
-          <div class="ditem"><span class="ln"></span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="6.5" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg><h3>Delivery Across Lucknow</h3></div>
-          <div class="ditem short"><span class="ln"></span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h4"/></svg><h3>Pharmacist-Checked Orders</h3></div>
-          <div class="ditem"><span class="ln"></span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg><h3>Derma &amp; Gynae Specialists</h3></div>
-          <div class="ditem short"><span class="ln"></span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg><h3>100% Genuine Medicines</h3></div>
+  <!-- ================= MEDICINES ================= -->
+  <section class="medicines med-light section" id="medicines">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="label" data-reveal><svg viewBox="0 0 22 23" aria-hidden="true"><path fill="#87C13F" d="M7.0,17.5c-0.3,0.2-0.2,0.7,0.1,0.9c0.3,0.1,0.7,0.3,1.0,0.4 c0.6,0.1,1.3,0.2,1.9,0.2c0.6-0.0,1.3-0.1,1.9-0.4c0.6-0.2,1.2-0.6,1.7-1.1l6.6-6.1l1.6,1.8l-6.6,6.1 c-0.8,0.7-1.7,1.3-2.7,1.7c-1.0,0.3-2.1,0.5-3.2,0.5c-1.1-0.0-2.1-0.2-3.1-0.7c-1-0.4-1.8-1.1-2.6-1.9 s-1.3-1.7-1.7-2.7c-0.3-1.0-0.5-2.1-0.5-3.2c0.0-1.1,0.2-2.1,0.7-3.1c0.4-1,1.0-1.8,1.9-2.6L10.7,1l1.7,1.8 L5.8,9c-0.5,0.4-0.9,1.0-1.2,1.6c-0.3,0.6-0.4,1.2-0.5,1.8c-0.0,0.6-0.0,1.2,0.0,1.9 c0.0,0.3,0.1,0.7,0.3,1.0c0.1,0.4,0.6,0.5,0.9,0.2l9.0-8.4l1.6,1.8L7.0,17.5z"/></svg> Our Medicines</span>
+          <h2 class="h2" data-reveal>Formulated for Better Outcomes</h2>
         </div>
-        <div class="capsules" id="capsules" aria-hidden="true"></div>
+        <a class="btn" href="https://store.exonolpharma.com/" target="_blank" rel="noopener" data-reveal>Visit E-Pharmacy <span class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
+      </div>
+      <div class="stack">
+        <article class="stack-card">
+          <div class="media"><video class="pv" muted loop playsinline preload="metadata" poster="assets/img/exozine-3d-poster.jpg" aria-label="Exozine 5mg Levocetirizine tablets pack — 3D view"><source src="assets/video/exozine-3d.webm" type="video/webm"><source src="assets/video/exozine-3d.mp4" type="video/mp4"></video><span class="tag">Antihistamine</span></div>
+          <div class="body">
+            <span class="kicker">Dermatology · 01</span>
+            <h3>EXOZINE 5mg Tablets</h3>
+            <p class="sub">Effective relief from allergic symptoms</p>
+            <p class="desc">A trusted antihistamine formulation containing Levocetirizine Dihydrochloride I.P., designed to provide fast and long-lasting relief from allergic conditions. It works by blocking histamine — the substance responsible for allergy symptoms — helping patients breathe easier and feel better.</p>
+            <ul class="ticks">
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#87C13F"/><path d="M6 10.4l2.6 2.6L14.2 7.4" stroke="#0B1F2A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Levocetirizine Dihydrochloride Tablets IP 5 mg</li>
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#87C13F"/><path d="M6 10.4l2.6 2.6L14.2 7.4" stroke="#0B1F2A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Fast and long-lasting allergy relief</li>
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#87C13F"/><path d="M6 10.4l2.6 2.6L14.2 7.4" stroke="#0B1F2A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>10 × 10 tablets</li>
+            </ul>
+            <div class="card-actions">
+              <a class="btn blue sm" href="exozine-5mg-tablets.html">View Product <span class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
+              <a class="link-arrow" href="https://store.exonolpharma.com/" target="_blank" rel="noopener">Order online <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+            </div>
+          </div>
+        </article>
+        <article class="stack-card">
+          <div class="media"><video class="pv" muted loop playsinline preload="metadata" poster="assets/img/exzole-3d-poster.jpg" aria-label="Exzole-SB 130mg Itraconazole capsules pack — 3D view"><source src="assets/video/exzole-3d.webm" type="video/webm"><source src="assets/video/exzole-3d.mp4" type="video/mp4"></video><span class="tag">Antifungal</span></div>
+          <div class="body">
+            <span class="kicker">Dermatology · 02</span>
+            <h3>EXZOLE-SB 130mg Capsules</h3>
+            <p class="sub">Advanced antifungal therapy with enhanced bioavailability</p>
+            <p class="desc">A super bio-available formulation of Itraconazole, developed to deliver superior absorption, improved efficacy and consistent therapeutic outcomes in a wide range of fungal infections.</p>
+            <ul class="ticks">
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#87C13F"/><path d="M6 10.4l2.6 2.6L14.2 7.4" stroke="#0B1F2A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Itraconazole Capsules IP 130 mg</li>
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#87C13F"/><path d="M6 10.4l2.6 2.6L14.2 7.4" stroke="#0B1F2A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Supra Bioavailable (SB) formulation</li>
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#87C13F"/><path d="M6 10.4l2.6 2.6L14.2 7.4" stroke="#0B1F2A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>10 × 10 capsules</li>
+            </ul>
+            <div class="card-actions">
+              <a class="btn blue sm" href="exzole-sb-130mg-capsules.html">View Product <span class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
+              <a class="link-arrow" href="https://store.exonolpharma.com/" target="_blank" rel="noopener">Order online <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+            </div>
+          </div>
+        </article>
+        <article class="stack-card">
+          <div class="media"><video class="pv" muted loop playsinline preload="metadata" poster="assets/img/edox-3d-poster.jpg" aria-label="EDOX-LB Doxycycline and Lactic Acid Bacillus capsules pack — 3D view"><source src="assets/video/edox-3d.webm" type="video/webm"><source src="assets/video/edox-3d.mp4" type="video/mp4"></video><span class="tag">Antibiotic</span></div>
+          <div class="body">
+            <span class="kicker">Dermatology · 03</span>
+            <h3>EDOX-LB Capsules</h3>
+            <p class="sub">A multifaceted antibiotic</p>
+            <p class="desc">EDOX-LB combines Doxycycline 100 mg with Lactic Acid Bacillus 5 Billion Spores in a capsule formulation, with a therapeutic role in acne vulgaris, rosacea and skin &amp; soft-tissue infections (SSTI).</p>
+            <ul class="ticks">
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#87C13F"/><path d="M6 10.4l2.6 2.6L14.2 7.4" stroke="#0B1F2A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Doxycycline 100 mg + Lactic Acid Bacillus 5 Billion Spores</li>
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#87C13F"/><path d="M6 10.4l2.6 2.6L14.2 7.4" stroke="#0B1F2A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Acne vulgaris · Rosacea · SSTI</li>
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#87C13F"/><path d="M6 10.4l2.6 2.6L14.2 7.4" stroke="#0B1F2A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>10 × 10 capsules</li>
+            </ul>
+            <div class="card-actions">
+              <a class="btn blue sm" href="edox-lb-capsules.html">View Product <span class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
+              <a class="link-arrow" href="https://store.exonolpharma.com/" target="_blank" rel="noopener">Order online <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <p class="rx-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>Prescription medicines. To be used only under the guidance of a registered medical practitioner.</p>
+    </div>
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track"><span>Levocetirizine 5 mg</span><span>Itraconazole SB 130 mg</span><span>Doxycycline 100 mg + LAB</span><span>Dermatology</span><span>E-Pharmacy</span><span>Levocetirizine 5 mg</span><span>Itraconazole SB 130 mg</span><span>Doxycycline 100 mg + LAB</span><span>Dermatology</span><span>E-Pharmacy</span></div>
+    </div>
+  </section>
+
+  <!-- ================= DIVISIONS ================= -->
+  <section class="section" id="divisions">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="label" data-reveal><svg viewBox="0 0 22 23" aria-hidden="true"><path fill="#87C13F" d="M7.0,17.5c-0.3,0.2-0.2,0.7,0.1,0.9c0.3,0.1,0.7,0.3,1.0,0.4 c0.6,0.1,1.3,0.2,1.9,0.2c0.6-0.0,1.3-0.1,1.9-0.4c0.6-0.2,1.2-0.6,1.7-1.1l6.6-6.1l1.6,1.8l-6.6,6.1 c-0.8,0.7-1.7,1.3-2.7,1.7c-1.0,0.3-2.1,0.5-3.2,0.5c-1.1-0.0-2.1-0.2-3.1-0.7c-1-0.4-1.8-1.1-2.6-1.9 s-1.3-1.7-1.7-2.7c-0.3-1.0-0.5-2.1-0.5-3.2c0.0-1.1,0.2-2.1,0.7-3.1c0.4-1,1.0-1.8,1.9-2.6L10.7,1l1.7,1.8 L5.8,9c-0.5,0.4-0.9,1.0-1.2,1.6c-0.3,0.6-0.4,1.2-0.5,1.8c-0.0,0.6-0.0,1.2,0.0,1.9 c0.0,0.3,0.1,0.7,0.3,1.0c0.1,0.4,0.6,0.5,0.9,0.2l9.0-8.4l1.6,1.8L7.0,17.5z"/></svg> Divisions Overview</span>
+          <h2 class="h2" data-reveal>Fresh perspectives,<br>focused divisions.</h2>
+        </div>
+        <p class="lead" data-reveal>Each division is built around a clear therapeutic need — with the same standard of quality, compliance and care behind every pack.</p>
+      </div>
+      <div class="div-grid">
+        <article class="div-card" data-reveal>
+          <div class="ph"><img src="assets/img/derma.jpg" alt="Dermatologist examining a patient's skin" loading="lazy"></div>
+          <div class="in">
+            <span class="st">Active</span>
+            <h3>Dermatology</h3>
+            <p>Our flagship division with targeted therapies for allergy, fungal infections, acne and rosacea.</p>
+            <ul><li>EXOZINE 5mg Tablets</li><li>EXZOLE-SB 130mg Capsules</li><li>EDOX-LB Capsules</li></ul>
+            <a class="link-arrow" href="medicines.html">Explore medicines <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+          </div>
+        </article>
+        <article class="div-card" data-reveal style="--d:.1s">
+          <div class="ph"><img src="assets/img/stethoscope.jpg" alt="Stethoscope and vials" loading="lazy" style="object-position:center 70%"></div>
+          <div class="in">
+            <span class="st b">Expanding</span>
+            <h3>General Division</h3>
+            <p>A growing portfolio of everyday essentials, built on the same principle — only what is essential, engineered for efficacy.</p>
+            <a class="link-arrow" href="contact.html">Partner with us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+          </div>
+        </article>
+        <article class="div-card" data-reveal style="--d:.2s">
+          <div class="ph"><img src="assets/img/warehouse.jpg" alt="Medicine boxes ready for dispatch" loading="lazy"></div>
+          <div class="in">
+            <span class="st">Online</span>
+            <h3>E-Pharmacy</h3>
+            <p>Order Exonol medicines online with reliable delivery — healthcare access across every region of India.</p>
+            <a class="link-arrow" href="https://store.exonolpharma.com/" target="_blank" rel="noopener">store.exonolpharma.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+          </div>
+        </article>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ========== RX FLOW ========== -->
-<section style="padding-top:16px">
-  <div class="wrap">
-    <div class="flow anim-group" id="flow">
-      <div class="flow-top">
-        <div><h2 class="skew-in">Prescription Upload Flow</h2><p class="rise">Easily send your doctor's prescription in just a few steps. Quick, private, and checked by our pharmacist before your order is packed.</p></div>
-        <button class="btn btn-blue rise" data-open-rx><span class="roll"><span data-t="Upload Prescription">Upload Prescription</span></span></button>
+  <!-- ================= PHILOSOPHY ================= -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap philo-grid">
+      <div class="philo-sticky">
+        <span class="label" data-reveal><svg viewBox="0 0 22 23" aria-hidden="true"><path fill="#87C13F" d="M7.0,17.5c-0.3,0.2-0.2,0.7,0.1,0.9c0.3,0.1,0.7,0.3,1.0,0.4 c0.6,0.1,1.3,0.2,1.9,0.2c0.6-0.0,1.3-0.1,1.9-0.4c0.6-0.2,1.2-0.6,1.7-1.1l6.6-6.1l1.6,1.8l-6.6,6.1 c-0.8,0.7-1.7,1.3-2.7,1.7c-1.0,0.3-2.1,0.5-3.2,0.5c-1.1-0.0-2.1-0.2-3.1-0.7c-1-0.4-1.8-1.1-2.6-1.9 s-1.3-1.7-1.7-2.7c-0.3-1.0-0.5-2.1-0.5-3.2c0.0-1.1,0.2-2.1,0.7-3.1c0.4-1,1.0-1.8,1.9-2.6L10.7,1l1.7,1.8 L5.8,9c-0.5,0.4-0.9,1.0-1.2,1.6c-0.3,0.6-0.4,1.2-0.5,1.8c-0.0,0.6-0.0,1.2,0.0,1.9 c0.0,0.3,0.1,0.7,0.3,1.0c0.1,0.4,0.6,0.5,0.9,0.2l9.0-8.4l1.6,1.8L7.0,17.5z"/></svg> Our Philosophy</span>
+        <h2 class="h2" data-reveal>Science, Precision, and Care Driving Better Health Outcomes</h2>
+        <p class="lead" data-reveal>Four principles that shape every formulation we bring to patients and doctors.</p>
+        <a class="btn blue" href="contact.html" data-reveal>Talk to our team <span class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
       </div>
       <div class="steps">
-        <div class="step slide-l"><span class="num">Step<br>01</span><h3>Take Photo</h3></div>
-        <svg class="arrow slide-l" viewBox="0 0 112 24" aria-hidden="true"><path class="dash" d="M1.5 22.3C24 17 50 3 74 1.3c10-.7 20 3.5 31 11.6"/><path class="head" d="M111 17.76 107.6 6.72 99.75 15.18z"/></svg>
-        <div class="step slide-l"><span class="num">Step<br>02</span><h3>WhatsApp It</h3></div>
-        <svg class="arrow slide-l" viewBox="0 0 112 24" aria-hidden="true"><path class="dash" d="M1.5 22.3C24 17 50 3 74 1.3c10-.7 20 3.5 31 11.6"/><path class="head" d="M111 17.76 107.6 6.72 99.75 15.18z"/></svg>
-        <div class="step slide-l"><span class="num">Step<br>03</span><h3>We Verify</h3></div>
-        <svg class="arrow slide-l" viewBox="0 0 112 24" aria-hidden="true"><path class="dash" d="M1.5 22.3C24 17 50 3 74 1.3c10-.7 20 3.5 31 11.6"/><path class="head" d="M111 17.76 107.6 6.72 99.75 15.18z"/></svg>
-        <div class="step slide-l"><span class="num">Step<br>04</span><h3>Fast Delivery</h3></div>
+        <div class="step" data-reveal><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg></span><span class="n">01</span><h4>Focus First</h4><p>We prioritize efficacy, delivering medicines that truly make a difference.</p></div>
+        <div class="step" data-reveal><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16l-6 7.5V19l-4 1.5v-8z"/></svg></span><span class="n">02</span><h4>Essential Only</h4><p>Stripping away non-essentials to concentrate on vital outcomes.</p></div>
+        <div class="step" data-reveal><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></span><span class="n">03</span><h4>Precision Matters</h4><p>Every formulation is carefully engineered for maximum patient benefit.</p></div>
+        <div class="step" data-reveal><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"/><path d="M19 3v3M17.5 4.5h3"/></svg></span><span class="n">04</span><h4>Future Ready</h4><p>Innovation and sustainability guide everything we create and deliver.</p></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ========== TRUST MARQUEE ========== -->
-<section>
-  <div class="wrap"><h2 class="trust-h rv" data-rv>Trusted in <span class="b">LDA Colony</span>, With a <span class="g">5.0</span> Google Rating</h2></div>
-  <div class="tm"><div class="tm-track" id="tm1"></div></div>
-  <div class="tm rev"><div class="tm-track" id="tm2"></div></div>
-</section>
-
-<!-- ========== SCROLL STORY ========== -->
-<section class="story" id="story">
-  <div class="story-sticky" id="storySticky">
-    <p class="story-text" id="storyText"></p>
-    <div class="story-expand" id="storyExpand">
-      <div class="packs" id="storyPacks"></div>
-      <div class="cap-txt">
-        <h3>Order online. Delivered to your door.</h3>
-        <p>Add products to your cart, place the order, and our pharmacist confirms it with you on WhatsApp.</p>
-        <a class="btn btn-green" href="#shop"><span class="roll"><span data-t="Start Shopping">Start Shopping</span></span></a>
+  <!-- ================= VALUES ================= -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="values-grid">
+        <div class="values-photo" data-reveal="left">
+          <img data-speed="0.08" src="assets/img/quality.jpg" alt="Quality control at Exonol" loading="lazy">
+          <div class="badge"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></b><div><strong>Built on Trust and Excellence</strong><span>Licensed, registered and committed to the highest standards.</span></div></div>
+        </div>
+        <div>
+          <span class="label" data-reveal><svg viewBox="0 0 22 23" aria-hidden="true"><path fill="#87C13F" d="M7.0,17.5c-0.3,0.2-0.2,0.7,0.1,0.9c0.3,0.1,0.7,0.3,1.0,0.4 c0.6,0.1,1.3,0.2,1.9,0.2c0.6-0.0,1.3-0.1,1.9-0.4c0.6-0.2,1.2-0.6,1.7-1.1l6.6-6.1l1.6,1.8l-6.6,6.1 c-0.8,0.7-1.7,1.3-2.7,1.7c-1.0,0.3-2.1,0.5-3.2,0.5c-1.1-0.0-2.1-0.2-3.1-0.7c-1-0.4-1.8-1.1-2.6-1.9 s-1.3-1.7-1.7-2.7c-0.3-1.0-0.5-2.1-0.5-3.2c0.0-1.1,0.2-2.1,0.7-3.1c0.4-1,1.0-1.8,1.9-2.6L10.7,1l1.7,1.8 L5.8,9c-0.5,0.4-0.9,1.0-1.2,1.6c-0.3,0.6-0.4,1.2-0.5,1.8c-0.0,0.6-0.0,1.2,0.0,1.9 c0.0,0.3,0.1,0.7,0.3,1.0c0.1,0.4,0.6,0.5,0.9,0.2l9.0-8.4l1.6,1.8L7.0,17.5z"/></svg> Our Values</span>
+          <h2 class="h2" data-reveal>Driven by purpose, focused on patients.</h2>
+          <div class="vlist">
+            <div class="vitem" data-reveal><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l4-4 4 2 3-2 3 1 4 4"/><path d="M7 7l-4 7 4 4 3-1 2 2 2-1 2 1 4-5"/><path d="M11 9l-3 3 2 2 4-3"/></svg></span><div><h4>The Foundation of Trust</h4><p>Rooted in Integrity and Ethics, we promise Reliability to our patients and partners. Trust is earned through the Consistency of our actions and the quality of our products.</p></div></div>
+            <div class="vitem" data-reveal><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.2 13.6L7 22l5-3 5 3-1.2-8.4"/></svg></span><div><h4>The Standard of Performance</h4><p>We do not settle for average; we strive for Excellence in every aspect of our operations — quality that stays high and delivery that stays dependable.</p></div></div>
+            <div class="vitem" data-reveal><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-9 6-14 15-14 0 9-5 15-14 15"/><path d="M5 19c3-4 6-6 10-8"/></svg></span><div><h4>The Vision for Tomorrow</h4><p>Healthcare is ever-evolving, and so are we. Through Innovation and Adaptability we meet new challenges head-on, while practising Sustainability to protect the communities we serve.</p></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="promise">
+        <div data-reveal><svg viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="14" fill="#005A90"/><path d="M22 33s-8-6.8-8-12.6a8 8 0 0 1 16 0C30 26.2 22 33 22 33z" fill="none" stroke="#fff" stroke-width="2"/><circle cx="22" cy="20.4" r="3" fill="#87C13F"/></svg>Reliable healthcare access across every region of India</div>
+        <div data-reveal style="--d:.1s"><svg viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="14" fill="#87C13F"/><path d="M22 11l8 3v6c0 5-3.5 8.5-8 9.5-4.5-1-8-4.5-8-9.5v-6z" fill="none" stroke="#0B1F2A" stroke-width="2"/><path d="M18.5 20.5l2.5 2.5 4.5-5" fill="none" stroke="#0B1F2A" stroke-width="2" stroke-linecap="round"/></svg>Consistent quality you can trust, every single time</div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ========== SHOP ========== -->
-<section id="shop">
-  <div class="wrap">
-    <div class="sec-head rv" data-rv>
-      <div><span class="eyebrow">Online store</span><h2>Shop All Products</h2></div>
-      <button class="btn btn-blue btn-sm" id="openCart2"><span class="roll"><span data-t="View Cart">View Cart</span></span></button>
-    </div>
-    <div class="shop-tools rv" data-rv id="chips"></div>
-    <p class="shop-note">Demo catalogue: names, prices and stock are samples for this website preview.</p>
-    <div class="pgrid" id="shopGrid"></div>
-  </div>
-</section>
+  <!-- ================= THE BEGINNING ================= -->
+  <section class="begin section" id="about">
+    <div class="wrap">
+      <div class="begin-top">
+        <div>
+          <span class="label light" data-reveal><svg viewBox="0 0 22 23" aria-hidden="true"><path fill="#87C13F" d="M7.0,17.5c-0.3,0.2-0.2,0.7,0.1,0.9c0.3,0.1,0.7,0.3,1.0,0.4 c0.6,0.1,1.3,0.2,1.9,0.2c0.6-0.0,1.3-0.1,1.9-0.4c0.6-0.2,1.2-0.6,1.7-1.1l6.6-6.1l1.6,1.8l-6.6,6.1 c-0.8,0.7-1.7,1.3-2.7,1.7c-1.0,0.3-2.1,0.5-3.2,0.5c-1.1-0.0-2.1-0.2-3.1-0.7c-1-0.4-1.8-1.1-2.6-1.9 s-1.3-1.7-1.7-2.7c-0.3-1.0-0.5-2.1-0.5-3.2c0.0-1.1,0.2-2.1,0.7-3.1c0.4-1,1.0-1.8,1.9-2.6L10.7,1l1.7,1.8 L5.8,9c-0.5,0.4-0.9,1.0-1.2,1.6c-0.3,0.6-0.4,1.2-0.5,1.8c-0.0,0.6-0.0,1.2,0.0,1.9 c0.0,0.3,0.1,0.7,0.3,1.0c0.1,0.4,0.6,0.5,0.9,0.2l9.0-8.4l1.6,1.8L7.0,17.5z"/></svg> The Beginning</span>
+          <h2 class="h2" data-reveal>Named after the part of DNA that does the work.</h2>
+        </div>
+        <figure class="dict" data-reveal="right">
+          <div class="dict-word">ex·on</div>
+          <div class="dict-meta"><span>/ˈek.sɒn/</span><span>noun · genetics</span></div>
+          <p>The ‘coding region’ of the DNA strand — the active, functional sequence that remains after the non-essential parts are spliced away.</p>
+        </figure>
+      </div>
 
-<!-- ========== BLOG ========== -->
-<section id="blog">
-  <div class="wrap">
-    <div class="sec-head rv" data-rv>
-      <h2>Everyday Health Blog</h2>
-      <a class="btn btn-line btn-sm" href="https://www.facebook.com/naikpharmacy" target="_blank" rel="noopener"><span class="roll"><span data-t="View All">View All</span></span></a>
-    </div>
-    <div class="posts" id="posts"></div>
-  </div>
-</section>
+      <div class="splice" data-splice>
+        <div class="splice-stage" aria-hidden="true">
+          <span class="on"><b>1</b>Pre-mRNA</span>
+          <span><b>2</b>Splicing</span>
+          <span><b>3</b>Mature mRNA</span>
+        </div>
+        <div class="track" role="img" aria-label="Exons joining as introns are spliced out">
+          <div class="ex">Exon 1</div>
+          <div class="in"><span>Intron</span></div>
+          <div class="ex">Exon 2</div>
+          <div class="in"><span>Intron</span></div>
+          <div class="ex">Exon 3</div>
+        </div>
+        <div class="splice-foot">
+          <span><i class="k ex-k"></i>Exon — coding, kept</span>
+          <span><i class="k in-k"></i>Intron — non-coding, removed</span>
+          <span class="out">Expresses proteins <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </div>
 
-<!-- ========== VISIT ========== -->
-<section id="contact" style="padding-top:20px">
-  <div class="wrap visit">
-    <div class="card rv" data-rv>
-      <span class="eyebrow">About us</span>
-      <h2>A Neighbourhood Pharmacy With a Specialist's Focus</h2>
-      <p class="lead">Naik Pharmacy sits in the heart of Lucknow's LDA Gol Market. Our shelves focus on skin and gynaecological well-being, with a wide range of derma medicines, gynae medicines and essential pregnancy supplements.</p>
-      <div class="spec-list">
-        <div><b>Derma &amp; Skin</b><span>Cleansers, sunscreens, acne, pigmentation and antifungal care</span></div>
-        <div><b>Gynaecology</b><span>Women's health medicines and intimate care</span></div>
-        <div><b>Pregnancy</b><span>Folic acid, iron, calcium and prenatal vitamins</span></div>
-        <div><b>Baby &amp; Mother</b><span>Gentle care for new mothers and babies</span></div>
+      <div class="begin-cols">
+        <p data-reveal>The Exon is the <strong>‘coding region’</strong> of the DNA strand. It is the active, functional sequence that remains after the non-essential parts are spliced away. The Exon is what expresses proteins; it is the biological engine that builds and sustains life.</p>
+        <p data-reveal style="--d:.1s">At Exonol Pharmaceuticals, we derive our name from this fundamental biological truth. We believe in stripping away the non-essential to focus purely on efficacy and results. We view our medicines as the vital tools that help the human body function exactly as its healthiest genetic code intended.</p>
+      </div>
+
+      <div class="begin-sign" data-reveal>
+        <svg viewBox="0 0 22 23" aria-hidden="true"><path fill="#87C13F" d="M7.0,17.5c-0.3,0.2-0.2,0.7,0.1,0.9c0.3,0.1,0.7,0.3,1.0,0.4 c0.6,0.1,1.3,0.2,1.9,0.2c0.6-0.0,1.3-0.1,1.9-0.4c0.6-0.2,1.2-0.6,1.7-1.1l6.6-6.1l1.6,1.8l-6.6,6.1 c-0.8,0.7-1.7,1.3-2.7,1.7c-1.0,0.3-2.1,0.5-3.2,0.5c-1.1-0.0-2.1-0.2-3.1-0.7c-1-0.4-1.8-1.1-2.6-1.9 s-1.3-1.7-1.7-2.7c-0.3-1.0-0.5-2.1-0.5-3.2c0.0-1.1,0.2-2.1,0.7-3.1c0.4-1,1.0-1.8,1.9-2.6L10.7,1l1.7,1.8 L5.8,9c-0.5,0.4-0.9,1.0-1.2,1.6c-0.3,0.6-0.4,1.2-0.5,1.8c-0.0,0.6-0.0,1.2,0.0,1.9 c0.0,0.3,0.1,0.7,0.3,1.0c0.1,0.4,0.6,0.5,0.9,0.2l9.0-8.4l1.6,1.8L7.0,17.5z"/></svg>
+        <p><b>Exonol</b> — only what is essential, engineered for efficacy.</p>
       </div>
     </div>
-    <div class="card rv" data-rv>
-      <span class="eyebrow">Visit the store</span>
-      <div class="vrow"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6 7-12a7 7 0 0 0-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></i><div><b>Address</b><span>B-1/12, Gol Market Road, Sector D, LDA Colony, Lucknow, Uttar Pradesh 226012</span><br><a href="https://www.google.com/maps/search/?api=1&amp;query=Naik+Pharmacy+Gol+Market+LDA+Colony+Lucknow" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600">Get directions →</a></div></div>
-      <div class="vrow"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></i><div><b>Phone &amp; WhatsApp</b><span>073930 44779</span><button class="copy" data-copy="07393044779">Copy</button></div></div>
-      <div class="vrow"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></i><div><b>Email</b><span>contact@naikpharmacy.in</span><button class="copy" data-copy="contact@naikpharmacy.in">Copy</button></div></div>
-      <div class="vrow"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><div><b>Hours</b><span>Open daily, closes 8:00 PM</span></div></div>
-    </div>
-  </div>
-</section>
-</main>
+  </section>
 
-<!-- ========== FOOTER ========== -->
-<footer id="footer">
-  <div class="wrap">
-    <div class="fcards">
-      <div class="fcard">
-        <h4>Stay Connected &amp; Stay Healthy, Anytime, Anywhere!</h4>
-        <form class="fform" id="offerForm">
-          <input id="offerName" type="text" placeholder="Your name" aria-label="Your name">
-          <button class="btn btn-green" type="submit"><span class="roll"><span data-t="Get Offers on WhatsApp">Get Offers on WhatsApp</span></span></button>
+
+  <!-- ================= FAQ ================= -->
+  <section class="faq faq-light section">
+    <div class="wrap faq-grid">
+      <div>
+        <span class="label" data-reveal><svg viewBox="0 0 22 23" aria-hidden="true"><path fill="#87C13F" d="M7.0,17.5c-0.3,0.2-0.2,0.7,0.1,0.9c0.3,0.1,0.7,0.3,1.0,0.4 c0.6,0.1,1.3,0.2,1.9,0.2c0.6-0.0,1.3-0.1,1.9-0.4c0.6-0.2,1.2-0.6,1.7-1.1l6.6-6.1l1.6,1.8l-6.6,6.1 c-0.8,0.7-1.7,1.3-2.7,1.7c-1.0,0.3-2.1,0.5-3.2,0.5c-1.1-0.0-2.1-0.2-3.1-0.7c-1-0.4-1.8-1.1-2.6-1.9 s-1.3-1.7-1.7-2.7c-0.3-1.0-0.5-2.1-0.5-3.2c0.0-1.1,0.2-2.1,0.7-3.1c0.4-1,1.0-1.8,1.9-2.6L10.7,1l1.7,1.8 L5.8,9c-0.5,0.4-0.9,1.0-1.2,1.6c-0.3,0.6-0.4,1.2-0.5,1.8c-0.0,0.6-0.0,1.2,0.0,1.9 c0.0,0.3,0.1,0.7,0.3,1.0c0.1,0.4,0.6,0.5,0.9,0.2l9.0-8.4l1.6,1.8L7.0,17.5z"/></svg> FAQ</span>
+        <h2 class="h2" data-reveal>Frequently asked questions</h2>
+        <p class="lead" data-reveal style="margin:22px 0 30px">Can’t find what you’re looking for? Our team responds within one business day.</p>
+        <a class="btn" href="contact.html" data-reveal>Ask a question <span class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
+      </div>
+      <div class="faq-list">
+        <div class="qa open"><button aria-expanded="true">What does the name “Exonol” mean?<span class="pm"></span></button><div class="ans"><div><p>The name comes from the Exon — the ‘coding region’ of DNA that remains after non-essential parts are spliced away and that expresses proteins. Like the exon, we strip away the non-essential to focus purely on efficacy and results.</p></div></div></div>
+        <div class="qa"><button aria-expanded="false">Which therapeutic areas does Exonol focus on?<span class="pm"></span></button><div class="ans"><div><p>Our Dermatology division currently offers EXOZINE 5mg Tablets, EXZOLE-SB 130mg Capsules and EDOX-LB Capsules. Our General Division is expanding, and every Exonol medicine is also available through our E-Pharmacy.</p></div></div></div>
+        <div class="qa"><button aria-expanded="false">Where can I buy Exonol medicines?<span class="pm"></span></button><div class="ans"><div><p>You can order through our <a href="https://store.exonolpharma.com/" target="_blank" rel="noopener">E-Pharmacy</a>. Please note these are prescription medicines and should be used only under the guidance of a registered medical practitioner.</p></div></div></div>
+        <div class="qa"><button aria-expanded="false">Is Exonol a licensed company?<span class="pm"></span></button><div class="ans"><div><p>Yes. Exonol Pharmaceuticals holds Form 20B (WLF20B2025UP008937) and Form 21B (WLF21B2025UP008908) licences and is GST registered (09AAICE9539R1ZJ).</p></div></div></div>
+        <div class="qa"><button aria-expanded="false">How can doctors, distributors or partners reach you?<span class="pm"></span></button><div class="ans"><div><p>Call us at +91 73930 44779, email <a href="mailto:contact@exonolpharma.com">contact@exonolpharma.com</a> or use our <a href="contact.html">contact form</a> — we’ll get back to you within one business day.</p></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONNECT ================= -->
+  <section class="connect section">
+    <div class="bg" data-network></div>
+    <div class="wrap connect-grid">
+      <div>
+        <span class="label light" data-reveal><svg viewBox="0 0 22 23" aria-hidden="true"><path fill="#87C13F" d="M7.0,17.5c-0.3,0.2-0.2,0.7,0.1,0.9c0.3,0.1,0.7,0.3,1.0,0.4 c0.6,0.1,1.3,0.2,1.9,0.2c0.6-0.0,1.3-0.1,1.9-0.4c0.6-0.2,1.2-0.6,1.7-1.1l6.6-6.1l1.6,1.8l-6.6,6.1 c-0.8,0.7-1.7,1.3-2.7,1.7c-1.0,0.3-2.1,0.5-3.2,0.5c-1.1-0.0-2.1-0.2-3.1-0.7c-1-0.4-1.8-1.1-2.6-1.9 s-1.3-1.7-1.7-2.7c-0.3-1.0-0.5-2.1-0.5-3.2c0.0-1.1,0.2-2.1,0.7-3.1c0.4-1,1.0-1.8,1.9-2.6L10.7,1l1.7,1.8 L5.8,9c-0.5,0.4-0.9,1.0-1.2,1.6c-0.3,0.6-0.4,1.2-0.5,1.8c-0.0,0.6-0.0,1.2,0.0,1.9 c0.0,0.3,0.1,0.7,0.3,1.0c0.1,0.4,0.6,0.5,0.9,0.2l9.0-8.4l1.6,1.8L7.0,17.5z"/></svg> Contact Us</span>
+        <h2 class="h2" data-reveal>Let’s Connect</h2>
+        <p class="lead" data-reveal style="margin-top:18px">Call us at +91 73930 44779 or fill out our form, and we’ll contact you within one business day.</p>
+        <div class="info" data-reveal>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>C-20, G-Block, WeWork Enam Sambhav, Bandra Kurla Complex, Mumbai – 400051</span></div>
+          <a href="mailto:contact@exonolpharma.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>contact@exonolpharma.com</a>
+          <a href="tel:+917393044779"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>+91 73930 44779</a>
+        </div>
+      </div>
+      <div class="form-card" data-reveal="right">
+        <h3>Send us a message</h3>
+        <p>Product enquiries, partnerships or distribution — we’re here to help.</p>
+        <form data-mail data-subject="Website enquiry — Exonol Pharmaceuticals">
+          <div class="fgrid">
+            <div class="field"><label for="h-name">Your name *</label><input id="h-name" name="Name" required placeholder="Full name"></div>
+            <div class="field"><label for="h-phone">Phone number *</label><input id="h-phone" name="Phone" type="tel" required placeholder="+91"></div>
+            <div class="field"><label for="h-email">Email address *</label><input id="h-email" name="Email" type="email" required placeholder="you@company.com"></div>
+            <div class="field"><label for="h-co">Company name</label><input id="h-co" name="Company" placeholder="Optional"></div>
+            <div class="field full"><label for="h-msg">Your message</label><textarea id="h-msg" name="Message" rows="3" placeholder="How can we help?"></textarea></div>
+          </div>
+          <button class="btn blue" type="submit">Get In Touch <span class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span></button>
+          <div class="form-ok"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#87C13F"/><path d="M6 10.4l2.6 2.6L14.2 7.4" stroke="#0B1F2A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Thanks! Your email app will open with your message to contact@exonolpharma.com.</div>
         </form>
       </div>
-      <div class="fcard">
-        <h5>Quick Links</h5>
-        <ul><li><a href="#about">About</a></li><li><a href="#shop">Shop</a></li><li><a href="#blog">Blog</a></li><li><a href="#contact">Contact</a></li><li><a href="#sale">Flash Sale</a></li></ul>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="fbg"><video class="fv" muted loop playsinline preload="metadata" poster="assets/img/hero-poster.jpg" aria-hidden="true"><source src="assets/video/exonol-dna.webm" type="video/webm"><source src="assets/video/exonol-dna.mp4" type="video/mp4"></video></div>
+  <div class="fcard">
+    <div class="fcols">
+      <div class="fcol">
+        <a class="fbrand" href="index.html" aria-label="Exonol Pharmaceuticals"><svg viewBox="0 0 103 38" role="img" aria-label="Exonol Pharmaceuticals"><path class="lg" d="M7.0,17.5c-0.3,0.2-0.2,0.7,0.1,0.9c0.3,0.1,0.7,0.3,1.0,0.4 c0.6,0.1,1.3,0.2,1.9,0.2c0.6-0.0,1.3-0.1,1.9-0.4c0.6-0.2,1.2-0.6,1.7-1.1l6.6-6.1l1.6,1.8l-6.6,6.1 c-0.8,0.7-1.7,1.3-2.7,1.7c-1.0,0.3-2.1,0.5-3.2,0.5c-1.1-0.0-2.1-0.2-3.1-0.7c-1-0.4-1.8-1.1-2.6-1.9 s-1.3-1.7-1.7-2.7c-0.3-1.0-0.5-2.1-0.5-3.2c0.0-1.1,0.2-2.1,0.7-3.1c0.4-1,1.0-1.8,1.9-2.6L10.7,1l1.7,1.8 L5.8,9c-0.5,0.4-0.9,1.0-1.2,1.6c-0.3,0.6-0.4,1.2-0.5,1.8c-0.0,0.6-0.0,1.2,0.0,1.9 c0.0,0.3,0.1,0.7,0.3,1.0c0.1,0.4,0.6,0.5,0.9,0.2l9.0-8.4l1.6,1.8L7.0,17.5z M30.9,15.4l5.8,6.3h-2.7l-4.4-4.7c-0.2-0.2-0.6-0.2-0.9,0l-4.4,4.7H21.6l5.8-6.3 c0.2-0.2,0.2-0.6,0-0.8l-5.8-6.3h2.7l4.4,4.7c0.2,0.2,0.6,0.2,0.9,0l4.4-4.7h2.7l-5.8,6.3 C30.7,14.8,30.7,15.1,30.9,15.4z M45.2,8.2c0.8,0,1.7,0.1,2.5,0.5c0.8,0.3,1.5,0.8,2.1,1.4 c0.6,0.6,1.1,1.3,1.4,2.1c0.3,0.8,0.5,1.6,0.5,2.5s-0.1,1.7-0.5,2.5c-0.3,0.8-0.8,1.5-1.4,2.1 c-0.6,0.6-1.3,1.1-2.1,1.4c-0.8,0.3-1.6,0.5-2.5,0.5h-2.2c-0.8,0-1.7-0.1-2.5-0.5 c-0.8-0.3-1.5-0.8-2.1-1.4c-0.6-0.6-1.1-1.3-1.4-2.1c-0.3-0.8-0.5-1.6-0.5-2.5s0.1-1.7,0.5-2.5 c0.3-0.8,0.8-1.5,1.4-2.1c0.6-0.6,1.3-1.1,2.1-1.4c0.8-0.3,1.6-0.5,2.5-0.5H45.2z M45.2,19.7 c0.6,0,1.2-0.1,1.8-0.3c0.5-0.2,1.0-0.5,1.5-1.0c0.4-0.4,0.7-0.9,1.0-1.5c0.2-0.5,0.3-1.1,0.3-1.8 c0-0.6-0.1-1.2-0.3-1.8c-0.2-0.5-0.5-1.0-1.0-1.5c-0.4-0.4-0.9-0.7-1.5-1.0c-0.5-0.2-1.1-0.3-1.8-0.3 h-2.2c-0.6,0-1.2,0.1-1.8,0.3c-0.5,0.2-1.0,0.5-1.5,1.0s-0.7,0.9-1.0,1.5c-0.2,0.5-0.3,1.1-0.3,1.8 c0,0.6,0.1,1.2,0.3,1.8c0.2,0.5,0.5,1.0,1.0,1.5c0.4,0.4,0.9,0.7,1.5,1.0c0.5,0.2,1.1,0.3,1.8,0.3H45.2z M67.0,8.2h1.9v11.4c0,0.5-0.1,1.0-0.5,1.4c-0.3,0.3-0.8,0.5-1.4,0.5 c-0.2,0-0.5-0.0-0.8-0.1c-0.2-0.1-0.4-0.2-0.6-0.5l-9.3-10.7v11.4h-1.9V10.2c0-0.2,0.0-0.5,0.1-0.7 c0.1-0.2,0.2-0.4,0.4-0.6c0.1-0.1,0.3-0.3,0.6-0.4c0.2-0.1,0.5-0.1,0.7-0.1c0.1,0,0.4,0.0,0.6,0.1 c0.2,0.0,0.4,0.2,0.5,0.3l9.5,10.9V8.2z M80.0,8.2c0.8,0,1.7,0.1,2.5,0.5c0.8,0.3,1.5,0.8,2.1,1.4 c0.6,0.6,1.1,1.3,1.4,2.1c0.3,0.8,0.5,1.6,0.5,2.5s-0.1,1.7-0.5,2.5c-0.3,0.8-0.8,1.5-1.4,2.1 c-0.6,0.6-1.3,1.1-2.1,1.4c-0.8,0.3-1.6,0.5-2.5,0.5h-2.2c-0.8,0-1.7-0.1-2.5-0.5 c-0.8-0.3-1.5-0.8-2.1-1.4c-0.6-0.6-1.1-1.3-1.4-2.1c-0.3-0.8-0.5-1.6-0.5-2.5s0.1-1.7,0.5-2.5 c0.3-0.8,0.8-1.5,1.4-2.1c0.6-0.6,1.3-1.1,2.1-1.4c0.8-0.3,1.6-0.5,2.5-0.5H80.0z M80.0,19.7 c0.6,0,1.2-0.1,1.8-0.3c0.5-0.2,1.0-0.5,1.5-1.0c0.4-0.4,0.7-0.9,1.0-1.5c0.2-0.5,0.3-1.1,0.3-1.8 c0-0.6-0.1-1.2-0.3-1.8c-0.2-0.5-0.5-1.0-1.0-1.5c-0.4-0.4-0.9-0.7-1.5-1.0c-0.5-0.2-1.1-0.3-1.8-0.3 h-2.2c-0.6,0-1.2,0.1-1.8,0.3c-0.5,0.2-1.0,0.5-1.5,1.0s-0.7,0.9-1.0,1.5c-0.2,0.5-0.3,1.1-0.3,1.8 c0,0.6,0.1,1.2,0.3,1.8c0.2,0.5,0.5,1.0,1.0,1.5c0.4,0.4,0.9,0.7,1.5,1.0c0.5,0.2,1.1,0.3,1.8,0.3H80.0z M101.5,19.7v1.9H91.0c-0.2,0-0.5-0.0-0.7-0.1c-0.2-0.1-0.4-0.2-0.6-0.4 c-0.1-0.1-0.3-0.3-0.4-0.6c-0.1-0.2-0.1-0.5-0.1-0.7V8.2h1.9v11.4H101.5z"/><path fill="#fff" d="M18.6,35.0c-0.5,0-1.0-0.1-1.4-0.5v1.8c0,0.1-0.0,0.2-0.1,0.3 c-0.1,0.1-0.2,0.1-0.3,0.1s-0.2-0.0-0.3-0.1c-0.0-0.0-0.1-0.2-0.1-0.3v-3.8c0-0.6,0.2-1.2,0.7-1.7 c0.4-0.4,1.0-0.7,1.7-0.7c0.6,0,1.2,0.2,1.7,0.7s0.7,1.0,0.7,1.7c0,0.6-0.2,1.2-0.7,1.7 C19.8,34.7,19.2,35.0,18.6,35.0z M18.6,31c-0.4,0-0.7,0.1-1.0,0.4c-0.2,0.3-0.4,0.6-0.4,1.0 c0,0.4,0.1,0.7,0.4,1.0c0.2,0.3,0.6,0.4,1.0,0.4c0.4,0,0.7-0.1,1.0-0.4s0.4-0.6,0.4-1.0 c0-0.4-0.1-0.7-0.4-1.0S19.0,31,18.6,31z M26.0,34.9c-0.1,0-0.2-0.0-0.3-0.1c-0.0-0.1-0.1-0.2-0.1-0.3v-1.9 c0-0.4-0.1-0.7-0.4-1.0c-0.2-0.3-0.6-0.4-1.0-0.4c-0.4,0-0.7,0.1-1.0,0.4c-0.2,0.3-0.4,0.6-0.4,1.0 l-0.0,2.0c0,0.1-0.0,0.2-0.1,0.3c-0.0,0.0-0.2,0.1-0.3,0.1c-0.1,0-0.2-0.0-0.3-0.1 c-0.0-0.1-0.1-0.2-0.1-0.3v-5.8c0-0.1,0.0-0.2,0.1-0.3s0.2-0.1,0.3-0.1s0.2,0.0,0.3,0.1 c0.1,0.1,0.1,0.2,0.1,0.3v1.8c0.4-0.3,0.9-0.5,1.4-0.5c0.6,0,1.2,0.2,1.7,0.7c0.4,0.4,0.7,1.0,0.7,1.7v1.9 c0,0.1-0.0,0.2-0.1,0.3C26.2,34.8,26.1,34.9,26.0,34.9z M31.4,34.9c-0.2,0-0.4-0.1-0.4-0.5c-0.4,0.3-0.9,0.5-1.5,0.5 c-0.6,0-1.2-0.2-1.7-0.7c-0.4-0.4-0.7-1.0-0.7-1.7c0-0.6,0.2-1.2,0.7-1.7c0.4-0.4,1.0-0.7,1.7-0.7 c0.6,0,1.2,0.2,1.7,0.7c0.4,0.4,0.7,1.0,0.7,1.7v1.9c0,0.1-0.0,0.2-0.1,0.3C31.6,34.9,31.5,34.9,31.4,34.9z M29.4,31c-0.4,0-0.7,0.1-1.0,0.4s-0.4,0.6-0.4,1.0s0.1,0.7,0.4,1.0s0.6,0.4,1.0,0.4 c0.4,0,0.7-0.1,1.0-0.4s0.4-0.6,0.4-1.0s-0.1-0.7-0.4-1.0S29.8,31,29.4,31z M35.5,30.1L35.5,30.1c0.2,0.0,0.3,0.2,0.3,0.4c0,0.1-0.0,0.2-0.1,0.3 c-0.0,0.0-0.1,0.1-0.2,0.1c-0.0,0-0.1,0-0.2,0s-0.2,0-0.2,0c-0.4,0-0.7,0.1-1.0,0.4c-0.3,0.3-0.4,0.6-0.4,1.0 v1.9c0,0.1-0.0,0.2-0.1,0.2s-0.1,0.1-0.2,0.1c-0.1,0-0.2-0.0-0.2-0.1c-0.0-0.0-0.1-0.1-0.1-0.2v-1.9 c0-0.6,0.2-1.2,0.6-1.6c0.4-0.4,0.9-0.7,1.6-0.7h0.1H35.5z M45.1,35c-0.1,0-0.2-0.0-0.3-0.1c-0.0-0.0-0.1-0.1-0.1-0.3v-1.9 c0-0.4-0.1-0.7-0.4-1.0s-0.6-0.4-1.0-0.4c-0.3,0-0.6,0.0-0.8,0.2c-0.2,0.1-0.4,0.4-0.5,0.6 c-0.0,0.1-0.0,0.2-0.0,0.3c0,0.2,0,0.6,0,1.0c0,0.5,0,0.8,0,1.0c0,0.1-0.0,0.2-0.1,0.3 C41.3,34.9,41.2,35,41.0,35c-0.1,0-0.2-0.0-0.3-0.1c-0.1-0.0-0.1-0.2-0.1-0.3v-1.9c0-0.0,0-0.0,0-0.1 c0-0.0,0-0.1,0-0.1c0-0.0-0.0-0.1-0.0-0.3c-0.1-0.3-0.3-0.5-0.5-0.7s-0.5-0.2-0.8-0.2c-0.4,0-0.7,0.1-1.0,0.4 c-0.3,0.2-0.4,0.6-0.4,1.0c0-0.0,0,0.6,0,1.8c0,0.1-0.0,0.2-0.1,0.3c-0.1,0.1-0.2,0.1-0.3,0.1 c-0.1,0-0.2-0.0-0.3-0.1c-0.1-0.0-0.1-0.1-0.1-0.3v-1.9c0-0.6,0.2-1.2,0.7-1.7c0.4-0.4,1.0-0.7,1.7-0.7 c0.8,0,1.5,0.3,2.0,1.0c0.5-0.6,1.1-0.9,1.9-0.9c0.7,0,1.2,0.2,1.7,0.7c0.4,0.4,0.7,1.0,0.7,1.7 c0-0.0,0,0.6,0,1.8c0.0,0.1-0.0,0.2-0.1,0.3S45.2,35,45.1,35z M50.6,34.9c-0.2,0-0.4-0.1-0.4-0.5c-0.4,0.3-0.9,0.5-1.5,0.5 c-0.6,0-1.2-0.2-1.7-0.7c-0.4-0.4-0.7-1.0-0.7-1.7c0-0.6,0.2-1.2,0.7-1.7c0.4-0.4,1.0-0.7,1.7-0.7 c0.6,0,1.2,0.2,1.7,0.7c0.4,0.4,0.7,1.0,0.7,1.7v1.9c0,0.1-0.0,0.2-0.1,0.3C50.9,34.9,50.7,34.9,50.6,34.9z M48.7,31c-0.4,0-0.7,0.1-1.0,0.4s-0.4,0.6-0.4,1.0s0.1,0.7,0.4,1.0s0.6,0.4,1.0,0.4 c0.4,0,0.7-0.1,1.0-0.4s0.4-0.6,0.4-1.0s-0.1-0.7-0.4-1.0S49.1,31,48.7,31z M54.6,30.9c-0.0,0-0.1,0-0.2,0c-0.1,0-0.2,0-0.2,0c-0.4,0-0.7,0.1-1.0,0.4 c-0.2,0.2-0.4,0.6-0.4,1.0c0,0.4,0.1,0.7,0.4,1.0c0.2,0.2,0.6,0.4,1.0,0.4c0.0,0,0.1,0,0.2,0 c0.1,0,0.2,0,0.2,0c0.1,0,0.2,0.0,0.3,0.1c0.1,0.0,0.1,0.2,0.1,0.3c0,0.1-0.0,0.2-0.1,0.3 c-0.0,0.0-0.1,0.1-0.3,0.1c-0.1,0.0-0.3,0.0-0.5,0.0c-0.6,0-1.2-0.2-1.6-0.7c-0.4-0.4-0.7-1.0-0.7-1.7 c0-0.6,0.2-1.2,0.7-1.7c0.4-0.4,1.0-0.7,1.6-0.7h0.5c0.1,0,0.2,0.0,0.3,0.1c0.0,0.0,0.1,0.2,0.1,0.3 s-0.0,0.2-0.1,0.3C54.8,30.9,54.7,30.9,54.6,30.9z M56.8,33c0.1,0.3,0.3,0.5,0.5,0.7c0.2,0.1,0.5,0.2,0.8,0.2c0.0,0,0.1,0,0.3,0 c0.1,0,0.2,0,0.2,0c0.1,0.0,0.2,0.0,0.3,0.1c0.0,0.0,0.1,0.2,0.1,0.3c0,0.2-0.1,0.3-0.3,0.4 c-0.1,0.0-0.3,0.0-0.7,0.0c-0.6,0-1.2-0.2-1.7-0.7c-0.4-0.4-0.7-1.0-0.7-1.7c0-0.6,0.2-1.2,0.7-1.7 c0.4-0.4,1.0-0.7,1.7-0.7c0.5,0,0.9,0.1,1.3,0.4c0.4,0.2,0.7,0.6,0.9,1.1c0.0,0.2,0.1,0.4,0.1,0.7 c0,0.0,0,0.2,0,0.7H56.8z M58.2,31c-0.3,0-0.6,0.0-0.8,0.2c-0.2,0.1-0.4,0.4-0.5,0.7h2.7 C59.3,31.3,58.8,31,58.2,31z M63.6,34.9c-0.6,0-1.2-0.2-1.7-0.7c-0.4-0.4-0.7-1.0-0.7-1.7c0,0.0,0-0.6-0.0-1.8 c0-0.1,0.0-0.2,0.1-0.3c0.0-0.0,0.2-0.1,0.3-0.1c0.1,0,0.2,0.0,0.3,0.1c0.0,0.0,0.1,0.1,0.1,0.3v1.9 c0,0.4,0.1,0.7,0.4,1.0c0.2,0.2,0.6,0.4,1.0,0.4c0.4,0,0.7-0.1,1.0-0.4c0.2-0.2,0.4-0.6,0.4-1.0v-1.8 c0-0.1,0.0-0.2,0.1-0.3c0.0-0.1,0.2-0.1,0.3-0.1c0.1,0,0.2,0.0,0.3,0.1c0.0,0.0,0.1,0.1,0.1,0.3v1.8 c0,0.6-0.2,1.2-0.7,1.7S64.3,34.9,63.6,34.9z M69.7,34.9c-0.2,0.0-0.4,0.0-0.5,0.0c-0.6,0-1.2-0.2-1.6-0.6 c-0.4-0.4-0.7-1.0-0.7-1.7v-3.1c0-0.1,0.0-0.2,0.1-0.3s0.2-0.1,0.3-0.1c0.2,0,0.4,0.1,0.4,0.4 c0.0,0.1,0.0,0.3,0.0,0.6h2.0c0.1,0,0.2,0.0,0.3,0.1c0.0,0.1,0.1,0.2,0.1,0.3c0,0.1-0.0,0.2-0.1,0.3 s-0.2,0.1-0.3,0.1h-2.0v1.4c0,0.4,0.1,0.7,0.4,1.0c0.2,0.2,0.6,0.4,1.0,0.4c0.0,0,0.1,0,0.2,0 c0.1,0,0.2,0,0.2,0c0.1,0,0.2,0.0,0.3,0.1c0.0,0.0,0.1,0.2,0.1,0.3c0,0.1-0.0,0.2-0.1,0.3 S69.8,34.9,69.7,34.9z M71.4,29.5c-0.1,0-0.2-0.0-0.3-0.1c-0.1-0.1-0.1-0.2-0.1-0.3 c0-0.1,0.0-0.2,0.1-0.3c0.1-0.1,0.2-0.1,0.3-0.1c0.1,0,0.2,0.0,0.3,0.1c0.1,0.1,0.1,0.2,0.1,0.3 c0,0.1-0.0,0.2-0.1,0.3C71.6,29.5,71.5,29.5,71.4,29.5z M71.4,34.9c-0.1,0-0.2-0.0-0.3-0.1 c-0.1-0.1-0.1-0.2-0.1-0.3v-3.9c0-0.1,0.0-0.2,0.1-0.3S71.3,30,71.4,30c0.1,0,0.2,0.0,0.3,0.1 c0.1,0.1,0.1,0.2,0.1,0.3v3.9c0,0.1-0.0,0.2-0.1,0.3C71.6,34.8,71.5,34.9,71.4,34.9z M75.4,30.9c-0.0,0-0.1,0-0.2,0c-0.1,0-0.2,0-0.2,0c-0.4,0-0.7,0.1-1.0,0.4 c-0.2,0.2-0.4,0.6-0.4,1.0c0,0.4,0.1,0.7,0.4,1.0c0.2,0.2,0.6,0.4,1.0,0.4c0.0,0,0.1,0,0.2,0 c0.1,0,0.2,0,0.2,0c0.1,0,0.2,0.0,0.3,0.1c0.1,0.0,0.1,0.2,0.1,0.3c0,0.1-0.0,0.2-0.1,0.3 c-0.0,0.0-0.1,0.1-0.3,0.1c-0.1,0.0-0.3,0.0-0.5,0.0c-0.6,0-1.2-0.2-1.6-0.7c-0.4-0.4-0.7-1.0-0.7-1.7 c0-0.6,0.2-1.2,0.7-1.7c0.4-0.4,1.0-0.7,1.6-0.7h0.5c0.1,0,0.2,0.0,0.3,0.1c0.0,0.0,0.1,0.2,0.1,0.3 s-0.0,0.2-0.1,0.3C75.6,30.9,75.5,30.9,75.4,30.9z M80.9,34.9c-0.2,0-0.4-0.1-0.4-0.5c-0.4,0.3-0.9,0.5-1.5,0.5 c-0.6,0-1.2-0.2-1.7-0.7c-0.4-0.4-0.7-1.0-0.7-1.7c0-0.6,0.2-1.2,0.7-1.7c0.4-0.4,1.0-0.7,1.7-0.7 c0.6,0,1.2,0.2,1.7,0.7c0.4,0.4,0.7,1.0,0.7,1.7v1.9c0,0.1-0.0,0.2-0.1,0.3C81.1,34.9,81.0,34.9,80.9,34.9z M78.9,31c-0.4,0-0.7,0.1-1.0,0.4s-0.4,0.6-0.4,1.0s0.1,0.7,0.4,1.0s0.6,0.4,1.0,0.4 c0.4,0,0.7-0.1,1.0-0.4s0.4-0.6,0.4-1.0s-0.1-0.7-0.4-1.0S79.4,31,78.9,31z M82.6,34.9c-0.1,0-0.2-0.0-0.3-0.1c-0.1-0.1-0.1-0.2-0.1-0.3v-5.8 c0-0.1,0.0-0.2,0.1-0.3c0.1-0.0,0.2-0.1,0.3-0.1c0.1,0,0.2,0.0,0.3,0.1c0.1,0.1,0.1,0.2,0.1,0.3v5.8 c0,0.1-0.0,0.2-0.1,0.3C82.8,34.8,82.7,34.9,82.6,34.9z M84.8,34.8h-0.5c-0.1,0-0.2-0.0-0.3-0.1c-0.0-0.0-0.1-0.2-0.1-0.3 c0-0.1,0.0-0.2,0.1-0.3c0.0-0.0,0.1-0.1,0.3-0.1c0.0,0,0.1,0,0.2,0c0.1,0,0.2,0,0.2,0 c0.3,0,0.5-0.0,0.8-0.2s0.4-0.4,0.5-0.7h-2.4v-0.4c0-0.6,0.2-1.2,0.7-1.7c0.4-0.4,1.0-0.7,1.6-0.7h0.5 c0.1,0,0.2,0.0,0.3,0.1c0.0,0.0,0.1,0.2,0.1,0.3s-0.0,0.2-0.1,0.3c-0.0,0.0-0.1,0.1-0.3,0.1 c-0.0,0-0.1,0-0.3,0c-0.1,0-0.2,0-0.2,0c-0.3,0-0.6,0.0-0.8,0.2c-0.2,0.1-0.4,0.4-0.5,0.7h2.4v0.4 c0,0.6-0.2,1.2-0.7,1.7C86.0,34.6,85.5,34.8,84.8,34.8z"/></svg></a>
+        <p class="blurb">Coding a healthier tomorrow — patient-focused, high-quality medicines built on efficacy, precision and care.</p>
+        <div class="gi">
+          <small>General Inquiries</small>
+          <a href="mailto:contact@exonolpharma.com">contact@exonolpharma.com</a>
+          <a href="tel:+917393044779">+91 73930 44779</a>
+        </div>
       </div>
-      <div class="fcard">
-        <h4>Talk to our pharmacist, call or WhatsApp</h4>
-        <div class="cline"><span>073930 44779</span><a href="https://wa.me/917393044779" target="_blank" rel="noopener" aria-label="WhatsApp Naik Pharmacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a></div>
-        <div class="cline"><span>contact@naikpharmacy.in</span><a href="mailto:contact@naikpharmacy.in" aria-label="Email Naik Pharmacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a></div>
+      <div class="fcol">
+        <h4>Quick links</h4>
+        <div class="qlinks">
+          <a href="index.html">Home</a>
+          <a href="exozine-5mg-tablets.html">Exozine 5mg</a>
+          <a href="about.html">About Us</a>
+          <a href="exzole-sb-130mg-capsules.html">Exzole-SB</a>
+          <a href="medicines.html">Medicines</a>
+          <a href="edox-lb-capsules.html">EDOX-LB</a>
+          <a href="medicines.html#divisions">Divisions</a>
+          <a href="https://store.exonolpharma.com/" target="_blank" rel="noopener">E-Pharmacy</a>
+          <a href="contact.html">Contact</a>
+          <a href="about.html#licenses">Licenses</a>
+        </div>
+      </div>
+      <div class="fcol">
+        <div class="socials">
+          <a href="#" aria-label="Exonol on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.3 0-2.9-1.8-2.9s-2.1 1.4-2.1 2.8V21h-4z"/></svg></a>
+          <a href="#" aria-label="Exonol on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 1-1h2.5V2H14c-3.3 0-4 2.4-4 4v2.5H7.5V12H10v10h4V12h3l.5-3.5z"/></svg></a>
+          <a href="mailto:contact@exonolpharma.com" aria-label="Email Exonol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+        </div>
+        <div class="news">
+          <h5>Stay Updated</h5>
+          <p>Product launches, medicine information and E-Pharmacy updates — straight to your inbox.</p>
+          <form data-news>
+            <label class="sr-only" for="nl-home">Email address</label>
+            <input id="nl-home" type="email" placeholder="Enter email" required>
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
       </div>
     </div>
-    <div class="wordmark" id="wordmark" aria-hidden="true"><span class="w1" style="--i:0">N</span><span class="w1" style="--i:1">A</span><span class="w1" style="--i:2">I</span><span class="w1" style="--i:3">K</span><span class="sp" style="--i:4"></span><span class="w2" style="--i:5">P</span><span class="w2" style="--i:6">H</span><span class="w2" style="--i:7">A</span><span class="w2" style="--i:8">R</span><span class="w2" style="--i:9">M</span><span class="w2" style="--i:10">A</span><span class="w2" style="--i:11">C</span><span class="w2" style="--i:12">Y</span></div><span class="sr-only" style="position:absolute;left:-9999px">Naik Pharmacy</span>
     <div class="fbottom">
-      <nav><a href="https://www.facebook.com/naikpharmacy" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/search/results/companies/?keywords=Naik%20Pharmacy" target="_blank" rel="noopener">LinkedIn</a><a href="https://wa.me/917393044779" target="_blank" rel="noopener">WhatsApp</a></nav>
-      <span>© 2026 Naik Pharmacy, Lucknow · Medicines marked Rx are dispensed only against a valid prescription.</span>
+      <span>© <span data-year>2026</span> Exonol Pharmaceuticals Pvt. Ltd. All rights reserved.</span>
+      <nav><a href="#">Terms &amp; Conditions</a><a href="#">Privacy Policy</a></nav>
+      <button class="to-top" type="button">Back to top <b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></b></button>
     </div>
   </div>
 </footer>
 
-<!-- floating cart -->
-<button class="fab" id="fab" aria-label="Open cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>Cart <b id="fabCount">0</b></button>
 
-<div class="scrim" id="scrim"></div>
-<aside class="drawer" id="drawer" aria-label="Shopping cart">
-  <div class="dhead"><h3>Your Cart</h3><button class="xbtn" data-close aria-label="Close cart">×</button></div>
-  <div class="dbody" id="cartBody"></div>
-  <div class="dfoot" id="cartFoot"></div>
-</aside>
-<div class="modal" id="pmodal" role="dialog" aria-modal="true" aria-label="Product details"><div class="mbox" id="pbox"></div></div>
-<div class="modal" id="comodal" role="dialog" aria-modal="true" aria-label="Checkout"><div class="mbox co" id="cobox"></div></div>
-<div class="toast" id="toast"><i>✓</i><span id="toastTxt"></span></div>
-
-<script>
-(function(){
-const WA='917393044779';
-const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-const inr=n=>'₹'+n.toLocaleString('en-IN');
-
-/* ---------- Demo catalogue ---------- */
-const P=[
- {id:'cln',name:'HydraCalm Gentle Cleanser',size:'125 ml · Soap-free',cat:'Skin Care',price:349,shape:'pump',c1:'#0070B8',c2:'#e9f4fc',lb:'HydraCalm',ls:'GENTLE CLEANSER',desc:'A soap-free, low-foam cleanser for dry, sensitive and acne-prone skin. Cleans without stripping the skin barrier.',use:['Use morning and night','Massage on damp skin, rinse with lukewarm water','Follow with moisturiser']},
- {id:'ocf',name:'ClearDerm Oil-Control Face Wash',size:'100 g · Salicylic acid 1%',cat:'Skin Care',price:299,mrp:369,shape:'tube',c1:'#88C040',c2:'#f2f9ea',lb:'ClearDerm',ls:'OIL CONTROL',desc:'A gel face wash with salicylic acid that clears excess oil and helps keep pores clear.',use:['Use twice daily','Avoid the eye area','Patch test before first use']},
- {id:'spf',name:'SunShield Matte Sunscreen SPF 50',size:'50 g · PA++++',cat:'Sun Care',price:599,mrp:749,shape:'tube',c1:'#f08a24',c2:'#fff4e8',lb:'SunShield',ls:'SPF 50 · PA++++',desc:'A lightweight, non-greasy, broad-spectrum sunscreen with a matte finish, suited to Lucknow summers.',use:['Apply two finger-lengths to face and neck','Apply 15 minutes before going out','Reapply every 2 to 3 hours']},
- {id:'cer',name:'BarrierCare Ceramide Cream',size:'80 g · Fragrance-free',cat:'Skin Care',price:449,shape:'jar',c1:'#0070B8',c2:'#ffffff',lb:'BarrierCare',ls:'CERAMIDE CREAM',desc:'A rich moisturiser with ceramides and hyaluronic acid that restores the skin barrier.',use:['Apply on clean skin twice daily','Suitable for face and body']},
- {id:'nia',name:'GlowFix Niacinamide 10% Serum',size:'30 ml · With zinc',cat:'Skin Care',price:549,mrp:689,shape:'dropper',c1:'#5b3a8c',c2:'#efe8f8',lb:'GlowFix',ls:'NIACINAMIDE 10%',desc:'A water-light serum that helps fade dark spots, control oil and refine pores.',use:['Use 3 to 4 drops at night','Apply before moisturiser','Use sunscreen in the day']},
- {id:'shp',name:'ScalpRx Anti-Dandruff Shampoo',size:'100 ml · Ketoconazole 2%',cat:'Hair Care',price:329,shape:'bottle',c1:'#0a8f8a',c2:'#e5f6f5',lb:'ScalpRx',ls:'ANTI-DANDRUFF',desc:'A medicated shampoo for dandruff and itchy, flaky scalp.',use:['Leave on the scalp for 3 to 5 minutes','Use twice a week','Rinse well']},
- {id:'soap',name:'FungiClear Antifungal Soap',size:'75 g · Medicated',cat:'Skin Care',price:129,shape:'box',c1:'#b0245a',c2:'#fbe9f0',lb:'FungiClear',ls:'ANTIFUNGAL SOAP',desc:'A medicated soap that helps fight fungal skin infections and soothes itching.',use:['Lather and leave on for 1 minute','Use daily or as your doctor advises']},
- {id:'pre',name:'MomCare Prenatal Multivitamin',size:'30 tablets · With DHA',cat:'Pregnancy',price:389,mrp:449,shape:'box',c1:'#e05a7d',c2:'#fdecf1',lb:'MomCare',ls:'PRENATAL + DHA',desc:'A complete prenatal multivitamin with folic acid, iron, iodine and DHA for mother and baby.',use:['One tablet daily after a meal','Take as your gynaecologist advises']},
- {id:'fol',name:'FoliPlus Folic Acid 5 mg',size:'30 tablets',cat:'Pregnancy',price:79,rx:true,shape:'strip',c1:'#88C040',c2:'#f2f9ea',lb:'FoliPlus',ls:'FOLIC ACID 5 mg',desc:'Folic acid supplement prescribed before and during early pregnancy.',use:['Dose as prescribed by your doctor']},
- {id:'iron',name:'HemoFer Iron + Folic Acid',size:'15 tablets',cat:'Pregnancy',price:119,rx:true,shape:'strip',c1:'#c0392b',c2:'#fdeceb',lb:'HemoFer',ls:'IRON + FOLIC',desc:'Iron and folic acid tablets for anaemia during pregnancy.',use:['Dose as prescribed by your doctor','Take with vitamin C rich food']},
- {id:'cal',name:'OsteoMax Calcium + Vitamin D3',size:'15 tablets',cat:'Women\'s Health',price:139,shape:'box',c1:'#0070B8',c2:'#e9f4fc',lb:'OsteoMax',ls:'CALCIUM + D3',desc:'Calcium with vitamin D3 for strong bones, recommended for women and expecting mothers.',use:['One tablet daily after food']},
- {id:'ihw',name:'FemFresh Intimate Wash',size:'100 ml · pH 3.5',cat:'Women\'s Health',price:249,shape:'pump',c1:'#d4558b',c2:'#fdeef4',lb:'FemFresh',ls:'INTIMATE WASH',desc:'A gentle, pH-balanced intimate hygiene wash with lactic acid.',use:['For external use only','Use once daily']},
- {id:'smc',name:'MamaSoft Stretch Mark Cream',size:'100 g · Shea + Vitamin E',cat:'Baby & Mother',price:399,mrp:499,shape:'tube',c1:'#88C040',c2:'#ffffff',lb:'MamaSoft',ls:'STRETCH MARK',desc:'A nourishing cream that helps reduce the appearance of stretch marks during and after pregnancy.',use:['Massage on belly, hips and thighs twice daily']},
- {id:'bab',name:'TinyTouch Baby Lotion',size:'200 ml · Mild',cat:'Baby & Mother',price:279,shape:'bottle',c1:'#4aa8e0',c2:'#eaf6fd',lb:'TinyTouch',ls:'BABY LOTION',desc:'A mild, fragrance-light lotion that keeps baby skin soft and moisturised.',use:['Apply after bath','Suitable from birth']}
-];
-const CATS=['All','Skin Care','Sun Care','Hair Care','Pregnancy','Women\'s Health','Baby & Mother'];
-
-/* ---------- Pack illustrations ---------- */
-let gid=0;
-function pack(p){
-  const id='g'+(gid++); const c1=p.c1,c2=p.c2;
-  const defs=`<defs><linearGradient id="${id}" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".12"/><stop offset=".35" stop-color="#fff" stop-opacity=".18"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".16"/></linearGradient></defs>`;
-  const T=(x,y,s,w,txt,col,anchor)=>`<text x="${x}" y="${y}" font-family="Poppins,sans-serif" font-size="${s}" font-weight="${w}" fill="${col}" text-anchor="${anchor||'middle'}">${txt}</text>`;
-  let b='';
-  switch(p.shape){
-   case 'pump': b=`<rect x="108" y="40" width="22" height="34" fill="#dfe5ea"/><rect x="92" y="30" width="62" height="14" rx="5" fill="#eef2f5"/><rect x="150" y="33" width="26" height="8" rx="3" fill="#eef2f5"/><rect x="100" y="70" width="38" height="16" rx="3" fill="${c1}"/><rect x="72" y="84" width="94" height="136" rx="22" fill="${c2}"/><rect x="72" y="84" width="94" height="136" rx="22" fill="url(#${id})"/><rect x="72" y="120" width="94" height="64" fill="${c1}"/>${T(119,147,15,700,p.lb,'#fff')}${T(119,166,8.5,600,p.ls,'#fff')}${T(119,205,9,500,p.size.split('·')[0],c1)}`;break;
-   case 'tube': b=`<rect x="64" y="24" width="112" height="12" rx="2" fill="${c2}" stroke="#d6dde3"/><path d="M66 36H174L160 182H80Z" fill="${c2}"/><path d="M66 36H174L160 182H80Z" fill="url(#${id})"/><path d="M68 70H172L166 132H74Z" fill="${c1}"/><rect x="86" y="182" width="68" height="34" rx="6" fill="${c1}"/><rect x="86" y="182" width="68" height="34" rx="6" fill="url(#${id})"/>${T(120,98,15,700,p.lb,'#fff')}${T(120,117,8,600,p.ls,'#fff')}${T(120,160,9,500,p.size.split('·')[0],c1)}`;break;
-   case 'jar': b=`<rect x="52" y="78" width="136" height="38" rx="10" fill="${c1}"/><rect x="52" y="78" width="136" height="38" rx="10" fill="url(#${id})"/><rect x="58" y="112" width="124" height="96" rx="16" fill="${c2}" stroke="#dbe2e8"/><rect x="58" y="112" width="124" height="96" rx="16" fill="url(#${id})"/><rect x="58" y="138" width="124" height="44" fill="${c1}" opacity=".95"/>${T(120,158,14,700,p.lb,'#fff')}${T(120,174,8,600,p.ls,'#fff')}`;break;
-   case 'dropper': b=`<ellipse cx="120" cy="40" rx="16" ry="20" fill="#2b2b33"/><rect x="102" y="54" width="36" height="40" rx="4" fill="#33333d"/><rect x="82" y="92" width="76" height="126" rx="14" fill="${c1}"/><rect x="82" y="92" width="76" height="126" rx="14" fill="url(#${id})"/><rect x="88" y="124" width="64" height="66" rx="4" fill="${c2}"/>${T(120,148,12,700,p.lb,c1)}${T(120,164,6.6,600,p.ls,c1)}${T(120,180,7,500,p.size.split('·')[0],'#555')}`;break;
-   case 'bottle': b=`<rect x="98" y="26" width="44" height="26" rx="6" fill="${c1}"/><path d="M84 52H156Q170 60 170 82V206Q170 220 156 220H84Q70 220 70 206V82Q70 60 84 52Z" fill="${c2}"/><path d="M84 52H156Q170 60 170 82V206Q170 220 156 220H84Q70 220 70 206V82Q70 60 84 52Z" fill="url(#${id})"/><rect x="70" y="104" width="100" height="70" fill="${c1}"/>${T(120,134,15,700,p.lb,'#fff')}${T(120,153,8,600,p.ls,'#fff')}${T(120,200,9,500,p.size.split('·')[0],c1)}`;break;
-   case 'strip': b=`<g transform="rotate(-8 120 120)"><rect x="40" y="62" width="160" height="104" rx="10" fill="#e8edf1" stroke="#cdd6de"/>${[0,1,2,3].map(i=>[0,1].map(j=>`<ellipse cx="${66+i*36}" cy="${92+j*46}" rx="14" ry="14" fill="#fff" stroke="#c4ced7"/><ellipse cx="${66+i*36}" cy="${92+j*46}" rx="8" ry="8" fill="${c1}"/>`).join('')).join('')}</g><g transform="rotate(6 120 170)"><rect x="56" y="134" width="132" height="76" rx="6" fill="#fff" stroke="#dbe2e8"/><rect x="56" y="134" width="132" height="22" rx="6" fill="${c1}"/>${T(122,150,11,700,p.lb,'#fff')}${T(122,178,8,600,p.ls,c1)}${p.rx?T(122,198,9,700,'Rx',c1):''}</g>`;break;
-   default: b=`<path d="M164 46L184 34V190L164 204Z" fill="${c1}" opacity=".75"/><path d="M60 46L80 34H184L164 46Z" fill="${c1}" opacity=".55"/><rect x="60" y="46" width="104" height="158" fill="${c2}" stroke="#dbe2e8"/><rect x="60" y="46" width="104" height="34" fill="${c1}"/>${T(112,68,10,700,'+ '+p.lb.toUpperCase(),'#fff')}${T(112,112,15,700,p.lb,c1)}${T(112,130,7.6,600,p.ls,'#40505f')}<rect x="60" y="150" width="104" height="5" fill="${c1}"/><ellipse cx="112" cy="178" rx="24" ry="11" fill="${c1}" opacity=".85"/>${T(112,197,8,500,p.size.split('·')[0],'#40505f')}`;
-  }
-  return `<svg viewBox="0 0 240 240" aria-hidden="true">${defs}<ellipse cx="120" cy="226" rx="66" ry="8" fill="#0c1a28" opacity=".08"/>${b}</svg>`;
-}
-
-/* ---------- Product cards ---------- */
-function card(p){
-  const off=p.mrp?Math.round((1-p.price/p.mrp)*100):0;
-  return `<article class="pcard rv" data-rv data-id="${p.id}" tabindex="0" aria-label="${p.name}">
-    <div class="pimg">${pack(p)}${off?`<span class="off">${off}% Off</span>`:''}${p.rx?'<span class="rx">Rx</span>':''}
-      <div class="quick"><button class="btn btn-line btn-sm" data-view="${p.id}">View Details</button><button class="btn btn-blue btn-sm" data-add="${p.id}">Add to Cart</button></div></div>
-    <h3 class="pname">${p.name}</h3><p class="psize">${p.size}</p>
-    <div class="pprice"><b>${inr(p.price)}</b>${p.mrp?`<s>${inr(p.mrp)}</s>`:''}</div></article>`;
-}
-$('#saleGrid').innerHTML=P.filter(p=>p.mrp).slice(0,4).map(card).join('');
-let curCat='All',query='';
-function renderShop(){
-  const q=query.toLowerCase();
-  const list=P.filter(p=>(curCat==='All'||p.cat===curCat)&&(!q||(p.name+' '+p.cat+' '+p.size).toLowerCase().includes(q)));
-  $('#shopGrid').innerHTML=list.length?list.map(card).join(''):`<div class="empty">No products match “${query.replace(/[<>&"]/g,'')}”. Try another word, or ask us on WhatsApp.</div>`;
-  $$('#shopGrid [data-rv]').forEach(el=>el.classList.remove('pre'));
-}
-$('#chips').innerHTML=CATS.map(c=>`<button class="chip${c==='All'?' on':''}" data-cat="${c}">${c}</button>`).join('');
-$('#chips').addEventListener('click',e=>{const b=e.target.closest('[data-cat]');if(!b)return;setCat(b.dataset.cat)});
-function setCat(c){curCat=c;$$('#chips .chip').forEach(x=>x.classList.toggle('on',x.dataset.cat===c));renderShop()}
-renderShop();
-
-/* ---------- Badges marquee ---------- */
-const BADGES=[['Licensed Pharmacy','M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6z|M9 12l2 2 4-4'],['100% Genuine','M20 7l-8-4-8 4v10l8 4 8-4z|M4 7l8 4 8-4M12 11v10'],['Pharmacist Checked','M7 3h7l5 5v13H7z|M10 13l2 2 4-4'],['Lucknow Delivery','M3 7h11v9H3z|M14 10h4l3 3v3h-7z'],['Secure Orders','M6 11h12v10H6z|M8 11V7a4 4 0 0 1 8 0v4']];
-const bHTML=BADGES.map(([t,d])=>`<span class="badge-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${d.split('|').map(x=>`<path d="${x}"/>`).join('')}</svg>${t}</span>`).join('');
-$('#badgeTrack').innerHTML=bHTML+bHTML;
-
-/* ---------- Category pills marquee ---------- */
-const catPacks={'Skin Care':['cln','cer'],'Sun Care':['spf','ocf'],'Hair Care':['shp','soap'],'Pregnancy':['pre','fol'],'Women\'s Health':['ihw','cal'],'Baby & Mother':['bab','smc']};
-const bgs={'Skin Care':'#dcecf8','Sun Care':'#fdebd8','Hair Care':'#d9f1ef','Pregnancy':'#fbe2ea','Women\'s Health':'#f6e3ee','Baby & Mother':'#e6f4d8'};
-const byId=id=>P.find(p=>p.id===id);
-const arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg>';
-const pillHTML=Object.keys(catPacks).map(c=>`<button class="cat-pill" data-gocat="${c}">${c} ${arrow}</button><div class="cat-img" style="background:${bgs[c]}">${pack(byId(catPacks[c][0]))}${pack(byId(catPacks[c][1]))}</div>`).join('');
-$('#pillTrack').innerHTML=pillHTML+pillHTML;
-document.addEventListener('click',e=>{const b=e.target.closest('[data-gocat]');if(!b)return;setCat(b.dataset.gocat);$('#shop').scrollIntoView({behavior:'smooth'})});
-
-/* ---------- Hero floating packs ---------- */
-['spf','cln','pre'].forEach((id,i)=>{const d=document.createElement('div');d.className='float-pack fp'+(i+1);d.innerHTML=pack(byId(id));$('#heroVisual').appendChild(d)});
-
-/* ---------- Capsules ---------- */
-(function(){const host=$('#capsules');const cols=[['#0070B8','#ffffff'],['#88C040','#ffffff'],['#f08a24','#ffe9d2'],['#e05a7d','#ffffff'],['#2a93d6','#e8f3fb']];let h='';
-const rnd=(i,k)=>{const x=Math.sin(i*12.9898+k*78.233)*43758.5453;return x-Math.floor(x)};
-for(let i=0;i<90;i++){const x=rnd(i,1)*102-4;const y=20+rnd(i,2)*130;
- if(rnd(i,3)<.38){const z=26+rnd(i,4)*26;h+=`<span class="tab" style="left:${x}%;top:${y}px;width:${z}px;height:${z}px;background:${rnd(i,5)<.55?'#f6d36b':(rnd(i,6)<.5?'#ffffff':'#f9e7b5')};animation-delay:-${(rnd(i,7)*8).toFixed(1)}s"></span>`}
- else{const c=cols[Math.floor(rnd(i,8)*cols.length)];const w=62+rnd(i,9)*40;h+=`<span class="cap" style="left:${x}%;top:${y}px;width:${w}px;height:${(w*.4).toFixed(0)}px;background:linear-gradient(90deg,${c[0]} 50%,${c[1]} 50%);transform:rotate(${Math.round(rnd(i,10)*140-70)}deg);animation-delay:-${(rnd(i,11)*7).toFixed(1)}s"></span>`}}
-host.innerHTML=h})();
-/* ---------- Trust cards ---------- */
-const TC=[
- ['Advice before you buy','Not sure which sunscreen or cleanser suits your skin? Ask our pharmacist in store or on WhatsApp.','Skin care guidance','#0070B8','M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10z'],
- ['Pregnancy supplements in stock','Folic acid, iron, calcium and prenatal vitamins are kept ready for expecting mothers.','Mother care','#e05a7d','M12 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8zM6 21v-4a6 6 0 0 1 12 0v4'],
- ['Every order checked','A pharmacist reviews each order and prescription before it is packed.','Safety first','#88C040','M9 12l2 2 4-4M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6z'],
- ['Discreet packing','Gynae and intimate care orders are packed and delivered discreetly.','Privacy','#0a8f8a','M6 11h12v10H6zM8 11V7a4 4 0 0 1 8 0v4'],
- ['Open every day','Visit us at LDA Gol Market any day of the week until 8 PM.','Store hours','#f08a24','M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18zM12 7v5l3 2'],
- ['Order on WhatsApp','Send your list or prescription photo to 073930 44779 and we handle the rest.','Easy ordering','#25a35a','M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z'],
- ['Genuine brands only','We source from authorised distributors, so you get the real product every time.','Authenticity','#5b3a8c','M20 7l-8-4-8 4v10l8 4 8-4zM4 7l8 4 8-4M12 11v10'],
- ['Rated 5.0 on Google','Our customers in LDA Colony and Ashiyana rate us five stars.','Google rating','#f4a521','M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z']
-];
-const tc=t=>`<div class="tcard"><span class="hl">${t[0]}</span><p>${t[1]}</p><div class="who"><i style="color:${t[3]}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="${t[4]}"/></svg></i><div><b>Naik Pharmacy promise</b><small>${t[2]}</small></div></div></div>`;
-const r1=TC.slice(0,4).map(tc).join(''),r2=TC.slice(4).map(tc).join('');
-$('#tm1').innerHTML=r1+r1+r1+r1;$('#tm2').innerHTML=r2+r2+r2+r2;
-
-/* ---------- Blog ---------- */
-const POSTS=[
- ['Is Cetaphil Cleanser Good for Oily Skin?','A look at its ingredients, benefits and whether it is the right choice for your skincare routine.','Skin care','linear-gradient(140deg,#dcecf8,#9fcbed)',['cln','ocf']],
- ['Day vs Night: Building Your Skincare Routine','What to use in the morning, what to use at night, and why sunscreen is the step you never skip.','Routine','linear-gradient(140deg,#fdebd8,#f7c48e)',['spf','nia']],
- ['Kz Soap: Benefits for Fungal Skin Infections','How a medicated soap fights stubborn fungal infections, prevents spread and soothes itching.','Derma care','linear-gradient(140deg,#fbe2ea,#ecaec3)',['soap','cer']]
-];
-$('#posts').innerHTML=POSTS.map(p=>`<a class="post rv" data-rv href="https://www.facebook.com/naikpharmacy" target="_blank" rel="noopener"><div class="cover"><div class="in" style="background:${p[3]}"><div style="position:absolute;left:10%;bottom:6%;width:46%">${pack(byId(p[4][0]))}</div><div style="position:absolute;right:8%;bottom:14%;width:40%">${pack(byId(p[4][1]))}</div></div><span class="tag">${p[2]} · Naik Pharmacy</span></div><h3>${p[0]}</h3><p>${p[1]}</p></a>`).join('');
-
-/* ---------- Scroll story ---------- */
-const storyWords='Get|trusted|medicines|at|your|doorstep|[PILL]|safe,|simple,|and|quick|with|Naik|Pharmacy.'.split('|');
-$('#storyText').innerHTML=storyWords.map(w=>w==='[PILL]'?'<span class="story-pill" id="storyPill"></span>':`<span class="w${w==='Naik'?' b':''}${w==='Pharmacy.'?' g':''}">${w}</span>`).join(' ');
-[['spf','46%','10%','19%'],['pre','66%','6%','17%'],['cln','80%','30%','16%'],['nia','62%','52%','13%'],['smc','40%','-4%','12%']].forEach(([id,l,t,w])=>{const d=document.createElement('div');d.style.cssText=`left:${l};top:${t};width:${w}`;d.innerHTML=pack(byId(id));$('#storyPacks').appendChild(d)});
-const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-const words=$$('#storyText .w'),story=$('#story'),sticky=$('#storySticky'),exp=$('#storyExpand'),pill=$('#storyPill');
-const ease=t=>1-Math.pow(1-t,3), cl=v=>Math.max(0,Math.min(1,v));
-function storyTick(){
-  if(reduce)return;
-  const r=story.getBoundingClientRect(),total=story.offsetHeight-innerHeight;const p=cl(-r.top/total);
-  const lit=Math.floor(cl(p/.45)*words.length+.001);words.forEach((w,i)=>w.classList.toggle('on',i<lit));
-  const sr=sticky.getBoundingClientRect(),pr=pill.getBoundingClientRect();
-  const a={l:pr.left-sr.left,t:pr.top-sr.top,w:pr.width,h:pr.height};
-  const mx=Math.max(16,sr.width*.03),my=Math.max(16,sr.height*.05);
-  const b={l:mx,t:my,w:sr.width-mx*2,h:sr.height-my*2};
-  const k=ease(cl((p-.5)/.38));
-  exp.style.left=a.l+(b.l-a.l)*k+'px';exp.style.top=a.t+(b.t-a.t)*k+'px';
-  exp.style.width=a.w+(b.w-a.w)*k+'px';exp.style.height=a.h+(b.h-a.h)*k+'px';
-  exp.style.borderRadius=(999*(1-k)+28*k)+'px';
-  exp.classList.toggle('full',k>.92);
-}
-
-/* ---------- Reveal, counters, lines ---------- */
-function setupReveal(){
-  const els=$$('[data-rv]');
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-  els.forEach((el,i)=>{const r=el.getBoundingClientRect();if(r.top>innerHeight&&!reduce){el.classList.add('pre');el.style.transitionDelay=((i%4)*.08)+'s';io.observe(el)}});
-}
-function countUp(el){const to=+el.dataset.count,dec=+(el.dataset.dec||0),suf=el.dataset.suf||'';const t0=performance.now(),dur=1600;
-  (function f(t){const k=ease(cl((t-t0)/dur));el.innerHTML=(to*k).toFixed(dec)+(suf?`<sup>${suf}</sup>`:(dec?'<sup>★</sup>':''));if(k<1)requestAnimationFrame(f)})(t0)}
-const once=(el,fn,th)=>{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){fn(e.target);io.disconnect()}}),{threshold:th||.3});io.observe(el)};
-$$('[data-count]').forEach(el=>setTimeout(()=>countUp(el),500));
-/* template-style appear: replays each time the section comes back into view */
-const groupIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.intersectionRatio>=.15)e.target.classList.add('in');else if(!e.isIntersecting)e.target.classList.remove('in')}),{threshold:[0,.15]});
-$$('.anim-group').forEach(g=>{if(reduce)return;g.classList.add('armed');requestAnimationFrame(()=>requestAnimationFrame(()=>groupIO.observe(g)))});
-{const wio=new IntersectionObserver(es=>es.forEach(e=>{if(e.intersectionRatio>=.2)e.target.classList.add('in');else if(!e.isIntersecting)e.target.classList.remove('in')}),{threshold:[0,.2]});wio.observe($('#wordmark'))}
-function fitWord(){const w=$('#wordmark');w.style.setProperty('--wm','100px');const avail=w.clientWidth;const need=[...w.children].reduce((a,c)=>a+c.getBoundingClientRect().width,0);w.style.setProperty('--wm',Math.max(40,Math.floor(100*avail/need*0.99))+'px')}
-fitWord();addEventListener('resize',fitWord);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitWord);
-
-/* footer squares */
-(function(){const f=$('#footer');for(let i=0;i<18;i++){const s=document.createElement('span');s.className='sq';const z=14+(i*7)%40;s.style.cssText=`width:${z}px;height:${z}px;left:${(i*53)%96}%;top:${(i*31)%90}%;animation-delay:-${(i*0.7)%6}s;animation-duration:${5+(i%4)}s`;f.appendChild(s)}})();
-
-/* ---------- Nav ---------- */
-const nav=$('#nav');
-const sections=['home','about','shop','blog','contact'].map(id=>document.getElementById(id));
-function navTick(){nav.classList.toggle('scrolled',scrollY>10);
-  let cur='home';sections.forEach(s=>{if(s&&s.getBoundingClientRect().top<innerHeight*.35)cur=s.id});
-  $$('#links a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur))}
-let ticking=false;addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(()=>{storyTick();navTick();ticking=false})}},{passive:true});
-addEventListener('resize',storyTick);
-const menuBtn=$('#menuBtn'),links=$('#links');
-menuBtn.addEventListener('click',()=>{const o=links.classList.toggle('open');menuBtn.setAttribute('aria-expanded',o)});
-links.addEventListener('click',e=>{if(e.target.tagName==='A'){links.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}});
-$('#searchBtn').addEventListener('click',()=>{const sb=$('#searchbar');sb.classList.toggle('open');if(sb.classList.contains('open'))setTimeout(()=>$('#searchInput').focus(),200)});
-$('#searchInput').addEventListener('input',e=>{query=e.target.value.trim();if(query&&curCat!=='All')setCat('All');else renderShop();});
-$('#searchInput').addEventListener('keydown',e=>{if(e.key==='Enter'){$('#shop').scrollIntoView({behavior:'smooth'})}});
-
-/* ---------- Cart ---------- */
-let cart={};try{cart=JSON.parse(localStorage.getItem('np-cart')||'{}')||{}}catch(e){cart={}}
-const save=()=>{try{localStorage.setItem('np-cart',JSON.stringify(cart))}catch(e){}};
-const count=()=>Object.values(cart).reduce((a,b)=>a+b,0);
-const subtotal=()=>Object.entries(cart).reduce((a,[id,q])=>a+(byId(id)?byId(id).price*q:0),0);
-const hasRx=()=>Object.keys(cart).some(id=>byId(id)&&byId(id).rx);
-function syncCount(bump){const n=count();const nc=$('#navCount');nc.textContent=n;nc.classList.toggle('on',n>0);$('#fabCount').textContent=n;if(bump){nc.classList.remove('bump');void nc.offsetWidth;nc.classList.add('bump')}}
-function add(id,q){cart[id]=(cart[id]||0)+(q||1);save();syncCount(true);renderCart();toast(byId(id).name+' added to cart')}
-function renderCart(){
-  const ids=Object.keys(cart).filter(id=>byId(id));
-  if(!ids.length){$('#cartBody').innerHTML=`<div class="dempty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 7h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg><p>Your cart is empty.</p><a class="btn btn-blue btn-sm" href="#shop" data-closeall style="margin-top:16px">Browse products</a></div>`;$('#cartFoot').innerHTML='';return}
-  $('#cartBody').innerHTML=ids.map(id=>{const p=byId(id);return `<div class="citem"><div class="th">${pack(p)}</div><div><h4>${p.name}</h4><small>${p.size}${p.rx?' · Rx':''}</small><div class="qty"><button data-dec="${id}" aria-label="Decrease">−</button><span>${cart[id]}</span><button data-inc="${id}" aria-label="Increase">+</button></div></div><div class="pr">${inr(p.price*cart[id])}<button class="rm" data-rm="${id}">Remove</button></div></div>`}).join('');
-  $('#cartFoot').innerHTML=`<div class="drow"><span>Subtotal</span><span>${inr(subtotal())}</span></div><div class="drow" style="color:var(--muted);font-size:.95rem"><span>Delivery</span><span>Confirmed on WhatsApp</span></div><div class="drow tot"><span>Total</span><span>${inr(subtotal())}</span></div>${hasRx()?'<p style="font-size:.92rem;color:var(--blue-d);background:var(--blue-soft);padding:10px 12px;border-radius:10px">Your cart has Rx items. Keep your prescription ready to share.</p>':''}<button class="btn btn-blue" id="checkoutBtn"><span class="roll"><span data-t="Checkout">Checkout</span></span></button>`;
-}
-document.addEventListener('click',e=>{
-  const t=e.target.closest('[data-add],[data-view],[data-inc],[data-dec],[data-rm],[data-close],[data-closeall],#checkoutBtn,[data-open-rx]');
-  if(!t){const c=e.target.closest('.pcard');if(c&&!e.target.closest('button'))openProduct(c.dataset.id);return}
-  if(t.dataset.add){e.stopPropagation();add(t.dataset.add)}
-  else if(t.dataset.view)openProduct(t.dataset.view);
-  else if(t.dataset.inc){cart[t.dataset.inc]++;save();syncCount();renderCart()}
-  else if(t.dataset.dec){const id=t.dataset.dec;cart[id]--;if(cart[id]<=0)delete cart[id];save();syncCount();renderCart()}
-  else if(t.dataset.rm!==undefined){delete cart[t.dataset.rm];save();syncCount();renderCart()}
-  else if(t.hasAttribute('data-close')||t.hasAttribute('data-closeall'))closeAll();
-  else if(t.id==='checkoutBtn'){closeAll();setTimeout(openCheckout,150)}
-  else if(t.hasAttribute('data-open-rx')){closeAll();openRx()}
-});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAll();if(e.key==='Enter'&&e.target.classList&&e.target.classList.contains('pcard'))openProduct(e.target.dataset.id)});
-const scrim=$('#scrim');
-function openDrawer(){renderCart();$('#drawer').classList.add('on');scrim.classList.add('on')}
-function closeAll(){$('#drawer').classList.remove('on');$$('.modal').forEach(m=>m.classList.remove('on'));scrim.classList.remove('on')}
-scrim.addEventListener('click',closeAll);
-['#cartBtn','#fab','#openCart2'].forEach(s=>$(s).addEventListener('click',openDrawer));
-$$('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeAll()}));
-
-/* ---------- Product modal ---------- */
-function openProduct(id){const p=byId(id);if(!p)return;let q=1;const off=p.mrp?Math.round((1-p.price/p.mrp)*100):0;
-  $('#pbox').innerHTML=`<button class="xbtn" data-close aria-label="Close">×</button><div class="pd"><div class="pd-img">${pack(p)}${off?`<span class="off" style="position:absolute;left:20px;top:20px;background:var(--green);color:var(--navy);font:700 .9rem var(--head);padding:.4rem .9rem;border-radius:999px">${off}% Off</span>`:''}</div><div class="pd-info"><span class="cat">${p.cat}</span><h2>${p.name}</h2><span style="color:var(--muted)">${p.size}</span><div class="pprice"><b>${inr(p.price)}</b>${p.mrp?`<s>${inr(p.mrp)}</s>`:''}</div><p style="color:#3b4b5c">${p.desc}</p><b style="font-family:var(--head)">How to use</b><ul>${p.use.map(u=>`<li>${u}</li>`).join('')}</ul>${p.rx?'<p class="rxnote">Prescription medicine. We dispense it only against a valid prescription, which you share when you confirm the order on WhatsApp.</p>':''}<div class="pd-buy"><div class="qty"><button id="pq-" aria-label="Decrease">−</button><span id="pqv">1</span><button id="pq+" aria-label="Increase">+</button></div><button class="btn btn-blue" id="pdAdd"><span class="roll"><span data-t="Add to Cart">Add to Cart</span></span></button></div><p style="font-size:.85rem;color:var(--muted)">Demo product for website preview.</p></div></div>`;
-  $('#pmodal').classList.add('on');scrim.classList.add('on');
-  document.getElementById('pq-').onclick=()=>{q=Math.max(1,q-1);$('#pqv').textContent=q};
-  document.getElementById('pq+').onclick=()=>{q++;$('#pqv').textContent=q};
-  $('#pdAdd').onclick=()=>{add(id,q);closeAll()};
-}
-
-/* ---------- Checkout ---------- */
-function openCheckout(){
-  if(!count()){openDrawer();return}
-  const lines=Object.keys(cart).filter(byId).map(id=>`<div><span>${byId(id).name} × ${cart[id]}</span><span>${inr(byId(id).price*cart[id])}</span></div>`).join('');
-  $('#cobox').innerHTML=`<button class="xbtn" data-close aria-label="Close">×</button><h2>Checkout</h2><p class="sub">Fill in your details. Your order opens in WhatsApp so our pharmacist can confirm stock, delivery and payment.</p>
-  <form id="coForm" novalidate>
-    <div class="two"><label>Full name<input id="coName" required autocomplete="name"></label><label>Mobile number<input id="coPhone" type="tel" required inputmode="numeric" autocomplete="tel" placeholder="10-digit mobile"></label></div>
-    <label>Delivery address<textarea id="coAddr" rows="3" required autocomplete="street-address" placeholder="House no., street, area, Lucknow"></textarea></label>
-    <div class="two"><label>Delivery option<select id="coMode"><option>Home delivery</option><option>Pick up from store</option></select></label><label>Payment<select id="coPay"><option>Cash on delivery</option><option>UPI on delivery</option></select></label></div>
-    ${hasRx()?'<label style="display:flex;gap:10px;align-items:flex-start;font-weight:500;font-family:var(--body)"><input id="coRx" type="checkbox" style="width:auto;margin-top:5px"> I will share my prescription on WhatsApp for the Rx items.</label>':''}
-    <div class="sum">${lines}<div style="border-top:1px solid var(--line);padding-top:6px;margin-top:4px;font-weight:700"><span>Total</span><span>${inr(subtotal())}</span></div></div>
-    <p class="err" id="coErr" hidden></p>
-    <button class="btn btn-blue" type="submit"><span class="roll"><span data-t="Place Order on WhatsApp">Place Order on WhatsApp</span></span></button>
-  </form>`;
-  $('#comodal').classList.add('on');scrim.classList.add('on');
-  $('#coForm').addEventListener('submit',e=>{e.preventDefault();
-    const n=$('#coName').value.trim(),ph=$('#coPhone').value.replace(/\D/g,''),ad=$('#coAddr').value.trim(),err=$('#coErr');
-    let msg='';if(!n)msg='Please enter your name.';else if(ph.length<10)msg='Please enter a 10-digit mobile number.';else if(!ad&&$('#coMode').value==='Home delivery')msg='Please enter your delivery address.';else if(hasRx()&&!$('#coRx').checked)msg='Please confirm you will share the prescription for Rx items.';
-    if(msg){err.textContent=msg;err.hidden=false;return}
-    const items=Object.keys(cart).filter(byId).map(id=>`• ${byId(id).name} (${byId(id).size.split('·')[0].trim()}) × ${cart[id]} = ${inr(byId(id).price*cart[id])}`).join('\n');
-    const text=`New order – Naik Pharmacy website\n\n${items}\n\nTotal: ${inr(subtotal())}\n\nName: ${n}\nMobile: ${ph}\n${$('#coMode').value}${ad?'\nAddress: '+ad:''}\nPayment: ${$('#coPay').value}`;
-    const url='https://wa.me/'+WA+'?text='+encodeURIComponent(text);
-    $('#cobox').innerHTML=`<button class="xbtn" data-close aria-label="Close">×</button><div class="done"><div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h2>Your order is ready to send</h2><p class="sub" style="margin:0">Tap the button to send it to Naik Pharmacy on WhatsApp. Our pharmacist will reply to confirm.</p><a class="btn btn-green" href="${url}" target="_blank" rel="noopener" id="waSend">Send order on WhatsApp</a><p style="font-size:.95rem;color:var(--muted)">WhatsApp not opening? Call or message 073930 44779.</p></div>`;
-    $('#waSend').addEventListener('click',()=>{cart={};save();syncCount();renderCart()});
-  });
-}
-function openRx(){
-  $('#cobox').innerHTML=`<button class="xbtn" data-close aria-label="Close">×</button><h2>Upload Prescription</h2><p class="sub">Send a clear photo of your prescription on WhatsApp. Our pharmacist will reply with availability and price.</p>
-  <form id="rxForm"><label>Your name<input id="rxName" required autocomplete="name"></label><label>Area in Lucknow<input id="rxArea" placeholder="e.g. LDA Colony, Ashiyana"></label><button class="btn btn-blue" type="submit"><span class="roll"><span data-t="Continue on WhatsApp">Continue on WhatsApp</span></span></button><p style="font-size:.95rem;color:var(--muted)">After WhatsApp opens, attach the prescription photo with the 📎 button.</p></form>`;
-  $('#comodal').classList.add('on');scrim.classList.add('on');
-  $('#rxForm').addEventListener('submit',e=>{e.preventDefault();const t=`Hello Naik Pharmacy, I am ${$('#rxName').value.trim()||'a customer'}${$('#rxArea').value.trim()?' from '+$('#rxArea').value.trim():''}. I am sending my prescription for an order.`;const a=document.createElement('a');a.href='https://wa.me/'+WA+'?text='+encodeURIComponent(t);a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();toast('Opening WhatsApp…')});
-}
-
-/* ---------- misc ---------- */
-let tt;function toast(m){$('#toastTxt').textContent=m;const t=$('#toast');t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2200)}
-$$('.copy').forEach(b=>b.addEventListener('click',()=>{const v=b.dataset.copy;const ok=()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1500)};
-  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(v).then(ok,()=>sel(b));else sel(b)}));
-function sel(b){const s=b.previousElementSibling;const r=document.createRange();r.selectNodeContents(s);const g=getSelection();g.removeAllRanges();g.addRange(r)}
-$('#offerForm').addEventListener('submit',e=>{e.preventDefault();const n=$('#offerName').value.trim();const a=document.createElement('a');a.href='https://wa.me/'+WA+'?text='+encodeURIComponent(`Hello Naik Pharmacy, ${n?'I am '+n+'. ':''}Please send me your latest offers.`);a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove()});
-
-syncCount();renderCart();setupReveal();storyTick();navTick();
-})();
-</script>
+<script src="assets/js/main.js"></script><script src="assets/js/scenes.js"></script>
 </body>
 </html>
