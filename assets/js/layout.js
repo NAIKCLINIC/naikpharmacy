@@ -49,7 +49,7 @@
   var NAV = [
     ['home', 'index.html', 'Home'],
     ['company', 'company.html', 'Company', [['company.html#about', 'About'], ['company.html#quality', 'Quality'], ['company.html#business', 'Our Business']]],
-    ['divisions', 'divisions.html', 'Divisions'],
+    ['divisions', 'divisions.html', 'Divisions', [['exozine-5mg-tablets.html', 'Anti-Allergic'], ['exzole-sb-130mg-capsules.html', 'Anti-Fungal'], ['edox-lb-capsules.html', 'Anti-Biotic']]],
     ['epharmacy', CFG.store, 'E-Pharmacy'],
     ['international', 'international.html', 'International'],
     ['careers', 'careers.html', 'Careers']
