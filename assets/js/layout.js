@@ -49,7 +49,6 @@
   var NAV = [
     ['home', 'index.html', 'Home'],
     ['company', 'company.html', 'Company', [['company.html#about', 'About'], ['company.html#quality', 'Quality'], ['company.html#business', 'Our Business']]],
-    ['medicines', 'medicines.html', 'Medicines'],
     ['divisions', 'divisions.html', 'Divisions'],
     ['epharmacy', CFG.store, 'E-Pharmacy'],
     ['international', 'international.html', 'International'],
