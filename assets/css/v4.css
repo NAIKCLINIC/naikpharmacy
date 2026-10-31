@@ -304,3 +304,8 @@ a.hc-chip:hover{background:#EEF4F8;transform:translateY(-2px)}
 .xf .to-top svg{width:15px;height:15px}
 @media (max-width:980px){.xf-top{grid-template-columns:1fr 1fr}.xf-brand{grid-column:1/-1}}
 @media (max-width:560px){.xf-top{grid-template-columns:1fr}.xf-bottom{flex-direction:column;align-items:flex-start}}
+/* spacing into footer + tidy contact chips */
+.hc-sec,.section.cta-sec{padding-bottom:0}
+.hc-chip{padding:12px 14px;gap:10px}
+.hc-ic{flex-basis:34px;width:34px;height:34px;border-radius:10px}
+.hc-chip>span:last-child{font-size:14px;overflow-wrap:normal;word-break:normal}
