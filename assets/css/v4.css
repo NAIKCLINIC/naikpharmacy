@@ -214,3 +214,22 @@ figure[data-ph]:hover img{transform:scale(1.04)}
 .spec-sp .formats{margin-top:0}
 .dv-sp{font-size:14.5px!important;color:var(--muted)!important}
 .dv-sp b{color:var(--ink);font-weight:600}
+
+/* ---------- clinical applications by specialty ---------- */
+.spc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px;align-items:start}
+.spc{padding:28px;border-radius:var(--radius-sm);background:#fff;border:1px solid var(--line)}
+.spc h4{font-size:21px;letter-spacing:-.02em;line-height:1.25;margin-bottom:14px;color:var(--blue)}
+.spc p{font-size:15px;color:var(--ink-2);line-height:1.6}
+.spc ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.spc li{position:relative;padding-left:18px;font-size:15px;color:var(--ink-2);line-height:1.55}
+.spc li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--green)}
+.spc li b{color:var(--ink);font-weight:600}
+@media (max-width:640px){.spc-grid{grid-template-columns:1fr}.spc{padding:22px}}
+/* equal spacing: cards -> Rx note -> CTA band */
+.dv-note{margin-top:32px}
+.section:has(+ .cta-sec){padding-bottom:32px}
+/* division cards: a little more room, aligned tops */
+.dv-grid{gap:26px}
+.dv-card:hover{transform:none}
+.dv-ph{margin:14px}
+.dv-tag{left:18px;top:18px}
