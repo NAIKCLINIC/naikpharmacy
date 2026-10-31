@@ -203,3 +203,7 @@ figure[data-ph]:hover img{transform:scale(1.04)}
 .xb-form button svg{width:18px;height:18px}
 .menu-open .xb{display:none}
 @media (max-width:640px){.xb{right:14px;bottom:14px}.xb-fab{width:54px;height:54px}.xb-panel{bottom:68px}}
+
+/* ---------- tighter gap above the closing call-to-action band ---------- */
+.section:has(+ .cta-sec){padding-bottom:clamp(36px,4vw,56px)}
+.section + .cta-sec{padding-top:0}
