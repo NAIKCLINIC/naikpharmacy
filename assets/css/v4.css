@@ -309,3 +309,5 @@ a.hc-chip:hover{background:#EEF4F8;transform:translateY(-2px)}
 .hc-chip{padding:12px 14px;gap:10px}
 .hc-ic{flex-basis:34px;width:34px;height:34px;border-radius:10px}
 .hc-chip>span:last-child{font-size:14px;overflow-wrap:normal;word-break:normal}
+.hc-chips{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr)}
+@media (max-width:560px){.hc-chips{grid-template-columns:1fr}}
