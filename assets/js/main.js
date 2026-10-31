@@ -4,21 +4,25 @@
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const PREVIEW = /claude|anthropic/.test(location.hostname);
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const EX = window.EXONOL || {};
 
-  /* ---------- Header: shrink, hide on scroll down, show on scroll up ---------- */
+  /* ---------- Site-wide links set in layout.js (LinkedIn, WhatsApp, profile PDF …) ---------- */
+  $$('[data-link]').forEach(a => {
+    const u = EX[a.dataset.link];
+    if (!u) return;
+    a.href = u;
+    if (/^https?:/.test(u)) { a.target = '_blank'; a.rel = 'noopener'; }
+  });
+
+  /* ---------- Header: shrink on scroll ---------- */
   const header = $('.site-header');
-  let lastY = window.scrollY;
-  function onHeader() {
-    const y = window.scrollY;
-    header.classList.toggle('scrolled', y > 20);
-    lastY = y;
-  }
+  function onHeader() { header.classList.toggle('scrolled', window.scrollY > 20); }
 
   /* ---------- Pill nav sliding indicator (Curenast) ---------- */
   const nav = $('.pillnav');
   if (nav) {
     const ind = $('.indicator', nav);
-    const links = $$('a', nav);
+    const links = $$(':scope > a, :scope > .nav-dd > a', nav);
     const active = links.find(a => a.classList.contains('active'));
     const moveTo = (a) => {
       if (!a) { ind.style.opacity = 0; return; }
@@ -29,10 +33,15 @@
     links.forEach(a => {
       a.addEventListener('mouseenter', () => { links.forEach(l => l.classList.remove('hovering')); moveTo(a); a.classList.add('hovering'); if (active && active !== a) active.style.color = 'var(--muted)'; });
     });
-    nav.addEventListener('mouseleave', () => { moveTo(active); if (active) active.style.color = ''; });
+    nav.addEventListener('mouseleave', () => { moveTo(active); if (active) active.style.color = ''; links.forEach(l => l.classList.remove('hovering')); });
     window.addEventListener('load', () => moveTo(active));
     window.addEventListener('resize', () => moveTo(active));
     requestAnimationFrame(() => moveTo(active));
+    /* keyboard: keep the Company dropdown open while focus is inside it */
+    $$('.nav-dd', nav).forEach(dd => {
+      dd.addEventListener('focusin', () => dd.classList.add('open'));
+      dd.addEventListener('focusout', (e) => { if (!dd.contains(e.relatedTarget)) dd.classList.remove('open'); });
+    });
   }
 
   /* ---------- Mobile drawer ---------- */
@@ -51,16 +60,6 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
   $$('[data-reveal]').forEach(el => io.observe(el));
-
-  /* ---------- Exon splice animation trigger ---------- */
-  const exon = $('.exon-card');
-  if (exon) {
-    const eo = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { setTimeout(() => exon.classList.add('spliced'), 700); eo.disconnect(); }
-    }, { threshold: 0.6 });
-    eo.observe(exon);
-    exon.addEventListener('click', () => { exon.classList.remove('spliced'); setTimeout(() => exon.classList.add('spliced'), 900); });
-  }
 
   /* ---------- Scroll-fill statement (Redcare) ---------- */
   const fill = $('.fill-text');
@@ -96,22 +95,6 @@
     });
   }
 
-  /* ---------- Stacked product cards: scale previous cards (Redcare services) ---------- */
-  const cards = $$('.stack-card');
-  function onStack() {
-    if (reduce || !cards.length) return;
-    cards.forEach((c, i) => {
-      const next = cards[i + 1];
-      if (!next) { c.style.transform = ''; c.style.filter = ''; return; }
-      const top = parseFloat(getComputedStyle(c).top);
-      const nr = next.getBoundingClientRect();
-      const h = c.offsetHeight;
-      const p = Math.min(1, Math.max(0, 1 - (nr.top - top) / h));
-      c.style.transform = `scale(${1 - p * 0.06})`;
-      c.style.filter = c.closest('.med-light') ? `brightness(${1 - p * 0.06})` : `brightness(${1 - p * 0.35})`;
-    });
-  }
-
   /* ---------- FAQ accordion ---------- */
   $$('.qa button').forEach(b => {
     b.addEventListener('click', () => {
@@ -127,15 +110,17 @@
     f.addEventListener('submit', (ev) => {
       ev.preventDefault();
       if (!f.reportValidity()) return;
+      const to = f.dataset.to === 'careers' ? (EX.careersEmail || EX.email) : (EX.email || 'contact@exonolpharma.com');
       const data = new FormData(f);
       const lines = [];
       for (const [k, v] of data.entries()) if (v && k !== 'consent') lines.push(`${k}: ${v}`);
+      if (f.dataset.to === 'careers') lines.push('', '(Please attach your CV — PDF or Word — before sending.)');
       const subject = encodeURIComponent(f.dataset.subject || 'Website enquiry — Exonol Pharmaceuticals');
       const body = encodeURIComponent(lines.join('\n'));
       const ok = $('.form-ok', f.parentElement) || $('.form-ok', f);
       if (ok) ok.classList.add('show');
-      if (PREVIEW) { if (ok) ok.lastChild.textContent = 'Message ready. On the live site this goes to contact@exonolpharma.com (preview does not send email).'; }
-      else window.location.href = `mailto:contact@exonolpharma.com?subject=${subject}&body=${body}`;
+      if (PREVIEW) { if (ok) ok.lastChild.textContent = `Message ready. On the live site this opens an email to ${to} (preview does not send email).`; }
+      else window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
       f.reset();
     });
   });
@@ -180,9 +165,19 @@
     pvs.forEach(v => vo.observe(v));
   }
 
+  /* ---------- Company page: highlight the section in the sub-nav ---------- */
+  const sub = $$('.subnav a');
+  if (sub.length) {
+    const secs = sub.map(a => $(a.getAttribute('href'))).filter(Boolean);
+    const so = new IntersectionObserver((es) => es.forEach(e => {
+      if (e.isIntersecting) sub.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+    }), { rootMargin: '-40% 0px -55% 0px' });
+    secs.forEach(s => so.observe(s));
+  }
+
   /* ---------- Loop ---------- */
   let ticking = false;
-  function frame() { onHeader(); onFill(); onParallax(); onStack(); onSplice(); ticking = false; }
+  function frame() { onHeader(); onFill(); onParallax(); onSplice(); ticking = false; }
   window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
   window.addEventListener('resize', frame);
   frame();
