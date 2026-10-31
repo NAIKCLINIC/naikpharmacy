@@ -233,3 +233,11 @@ figure[data-ph]:hover img{transform:scale(1.04)}
 .dv-card:hover{transform:none}
 .dv-ph{margin:14px}
 .dv-tag{left:18px;top:18px}
+
+/* ---------- pack specifications ---------- */
+.pk-sec{padding-bottom:0}
+.pk{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:0 40px;padding:10px 34px;border-radius:var(--radius-sm);background:#fff;border:1px solid var(--line)}
+.pk>div{display:grid;grid-template-columns:170px 1fr;gap:18px;padding:18px 0;border-bottom:1px dashed var(--line)}
+.pk dt{font-size:14px;color:var(--muted)}
+.pk dd{margin:0;font-size:15px;color:var(--ink);font-weight:500;line-height:1.5}
+@media (max-width:860px){.pk{grid-template-columns:1fr;padding:6px 22px}.pk>div{grid-template-columns:130px 1fr}}
