@@ -207,3 +207,10 @@ figure[data-ph]:hover img{transform:scale(1.04)}
 /* ---------- tighter gap above the closing call-to-action band ---------- */
 .section:has(+ .cta-sec){padding-bottom:clamp(36px,4vw,56px)}
 .section + .cta-sec{padding-top:0}
+
+/* ---------- specialties on medicine pages ---------- */
+.spec-sp{margin-top:26px}
+.spec-sp .spec-l{display:block;font-size:14px;color:var(--muted);margin-bottom:10px}
+.spec-sp .formats{margin-top:0}
+.dv-sp{font-size:14.5px!important;color:var(--muted)!important}
+.dv-sp b{color:var(--ink);font-weight:600}
