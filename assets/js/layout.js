@@ -87,29 +87,29 @@
 
   function footer() {
     var pg = d.page || 'page';
-    var Q = [['index.html', 'Home'], ['company.html', 'Company'], ['medicines.html', 'Medicines'], ['divisions.html', 'Divisions'],
-      ['exozine-5mg-tablets.html', 'Exozine 5mg'], ['exzole-sb-130mg-capsules.html', 'Exzole-SB'], ['edox-lb-capsules.html', 'EDOX-LB'],
-      ['international.html', 'International'], ['careers.html', 'Careers'], [CFG.store, 'E-Pharmacy'], ['contact.html', 'Contact'], ['company.html#licenses', 'Licences']];
-    return '<footer class="site-footer">' +
-      '<div class="fbg"><video class="fv" muted loop playsinline preload="metadata" poster="assets/img/hero-poster.jpg" aria-hidden="true"><source src="assets/video/exonol-dna.webm" type="video/webm"><source src="assets/video/exonol-dna.mp4" type="video/mp4"></video></div>' +
-      '<div class="fcard"><div class="fcols">' +
-        '<div class="fcol"><a class="fbrand" href="index.html" aria-label="Exonol Pharmaceuticals">' + logo(true) + '</a>' +
-          '<p class="blurb">Coding a healthier tomorrow — patient-focused, high-quality medicines built on efficacy, precision and care.</p>' +
-          '<div class="gi"><small>General Inquiries</small><a href="mailto:' + CFG.email + '">' + CFG.email + '</a><a href="tel:' + CFG.tel + '">' + CFG.phone + '</a></div></div>' +
-        '<div class="fcol"><h4>Quick links</h4><div class="qlinks">' +
-          Q.map(function (q) { return '<a href="' + q[0] + '"' + ext(q[0]) + '>' + q[1] + '</a>'; }).join('') + '</div></div>' +
-        '<div class="fcol"><div class="socials">' +
-          '<a href="#" data-link="linkedin" aria-label="Exonol on LinkedIn">' + ic('li') + '</a>' +
-          '<a href="#" data-link="facebook" aria-label="Exonol on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 1-1h2.5V2H14c-3.3 0-4 2.4-4 4v2.5H7.5V12H10v10h4V12h3l.5-3.5z"/></svg></a>' +
-          '<a href="' + CFG.whatsapp + '" target="_blank" rel="noopener" aria-label="Chat with Exonol on WhatsApp">' + ic('wa') + '</a>' +
-          '<a href="mailto:' + CFG.email + '" aria-label="Email Exonol">' + ic('ml') + '</a></div>' +
-          '<div class="news"><h5>Stay Updated</h5><p>Product launches, medicine information and E-Pharmacy updates — straight to your inbox.</p>' +
-          '<form data-news><label class="sr-only" for="nl-' + pg + '">Email address</label><input id="nl-' + pg + '" type="email" placeholder="Enter email" required><button type="submit">Subscribe</button></form></div></div>' +
+    var L = function (arr) { return arr.map(function (q) { return '<a href="' + q[0] + '"' + ext(q[0]) + '>' + q[1] + '</a>'; }).join(''); };
+    var CO = [['company.html#about', 'About Us'], ['company.html#quality', 'Quality'], ['company.html#business', 'Our Business'], ['international.html', 'International'], ['careers.html', 'Careers'], ['contact.html', 'Contact']];
+    var MD = [['divisions.html', 'All Divisions'], ['exozine-5mg-tablets.html', 'EXOZINE 5mg'], ['exzole-sb-130mg-capsules.html', 'EXZOLE-SB 130mg'], ['edox-lb-capsules.html', 'EDOX-LB'], [CFG.store, 'E-Pharmacy'], ['company.html#licenses', 'Licences']];
+    return '<footer class="xf"><div class="wrap"><div class="xf-card">' +
+      '<div class="xf-news"><div><h3>Stay updated with Exonol</h3><p>Product launches, medicine information and E-Pharmacy updates.</p></div>' +
+        '<form data-news><label class="sr-only" for="nl-' + pg + '">Email address</label><input id="nl-' + pg + '" type="email" placeholder="Enter your email" required><button type="submit">Subscribe</button></form></div>' +
+      '<div class="xf-top">' +
+        '<div class="xf-brand"><a class="fbrand" href="index.html" aria-label="Exonol Pharmaceuticals">' + logo(true) + '</a>' +
+          '<p>Coding a healthier tomorrow — patient-focused, high-quality medicines built on efficacy, precision and care.</p>' +
+          '<div class="xf-soc">' +
+            '<a href="#" data-link="linkedin" aria-label="Exonol on LinkedIn">' + ic('li') + '</a>' +
+            '<a href="#" data-link="facebook" aria-label="Exonol on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 1-1h2.5V2H14c-3.3 0-4 2.4-4 4v2.5H7.5V12H10v10h4V12h3l.5-3.5z"/></svg></a>' +
+            '<a href="' + CFG.whatsapp + '" target="_blank" rel="noopener" aria-label="Chat with Exonol on WhatsApp">' + ic('wa') + '</a>' +
+            '<a href="mailto:' + CFG.email + '" aria-label="Email Exonol">' + ic('ml') + '</a></div></div>' +
+        '<div class="xf-col"><h5>Company</h5>' + L(CO) + '</div>' +
+        '<div class="xf-col"><h5>Medicines</h5>' + L(MD) + '</div>' +
+        '<div class="xf-col xf-ct"><h5>Get in touch</h5>' +
+          '<a href="mailto:' + CFG.email + '">' + CFG.email + '</a><a href="tel:' + CFG.tel + '">' + CFG.phone + '</a>' +
+          '<span>C-20, G-Block, WeWork Enam Sambhav, Bandra Kurla Complex, Mumbai – 400051</span></div>' +
       '</div>' +
-      '<div class="fbottom"><span>© <span data-year>2026</span> Exonol Pharmaceuticals Pvt. Ltd. All rights reserved.</span><nav><a href="#">Terms &amp; Conditions</a><a href="#">Privacy Policy</a></nav>' +
+      '<div class="xf-bottom"><span>© <span data-year>2026</span> Exonol Pharmaceuticals Pvt. Ltd. All rights reserved.</span><nav><a href="#">Terms &amp; Conditions</a><a href="#">Privacy Policy</a></nav>' +
         '<button class="to-top" type="button">Back to top <b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></b></button></div>' +
-      '</div></footer>' +
-      '<script src="assets/js/chatbot.js"><\/script>';
+    '</div></div></footer>';
   }
 
   document.write(d.part === 'footer' ? footer() : header());
